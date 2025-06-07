@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+
+  postgres_green:
+    image: postgres:15
+    container_name: postgres_green
+    restart: always
+    environment:
+      POSTGRES_USER: green_admin
+      POSTGRES_PASSWORD: '@greenpassword'
+      POSTGRES_DB: green_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_green_data:/var/lib/postgresql/data
+    networks:
+      - green-network
+
+  postgres_sonar:
+    image: postgres:15
+    container_name: postgres_sonar
+    restart: always
+    environment:
+      POSTGRES_USER: sonar_admin
+      POSTGRES_PASSWORD: '@sonarpassword'
+      POSTGRES_DB: sonar
+    volumes:
+      - postgres_sonar_data:/var/lib/postgresql/data
+    networks:
+      - green-network
+
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube_green
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://postgres_sonar:5432/sonar
+      SONAR_JDBC_USERNAME: sonar_admin
+      SONAR_JDBC_PASSWORD: '@sonarpassword'
+    depends_on:
+      - postgres_sonar
+    networks:
+      - green-network
+
+volumes:
+  postgres_green_data:
+  postgres_sonar_data:
+
+networks:
+  green-network:
+    driver: bridge
