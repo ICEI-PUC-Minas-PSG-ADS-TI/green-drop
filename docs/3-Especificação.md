@@ -1,109 +1,73 @@
+# 3. Especificação
 
-# 3. Especificações do Projeto
+## 3.1 Requisitos Funcionais
 
-<span style="color:red">Pré-requisitos: <a href="2-Planejamento-Projeto.md"> Planejamento do Projeto do Software (Cronograma) </a></span>
+|  **ID**  | **Descrição**                                                                             |
+| :------: | :---------------------------------------------------------------------------------------- |
+| **RF01** | Cadastro de usuário (nome, e-mail, telefone e senha)                                      |
+| **RF02** | Autenticação por e-mail ou telefone + senha, com emissão de token JWT                     |
+| **RF03** | Atualização de perfil (nome, e-mail e telefone)                                           |
+| **RF04** | Envio de reporte (foto, localização, categoria e descrição)                               |
+| **RF05** | Visualização de reportes aprovados em mapa interativo, com ícones por categoria           |
+| **RF06** | Histórico de reportes do usuário, com status (`Pendente`, `Aprovado`, `Rejeitado`)        |
+| **RF07** | Busca de pontos de descarte por tipo de resíduo e proximidade                             |
+| **RF08** | Gamificação – atribuição de pontos ao aprovar reporte e cálculo de nível                  |
+| **RF09** | Gamificação – desbloqueio e exibição de conquistas (badges)                               |
+| **RF10** | Push notifications para conquistas e subida de nível                                      |
+| **RF11** | Portal web – login de moderador/admin                                                     |
+| **RF12** | Portal web – listagem, aprovação e rejeição de reportes                                   |
+| **RF13** | Portal web – gestão de usuários (atribuição de papéis e desativação de conta)             |
+| **RF14** | Portal web – relatórios e indicadores (número de reportes, tempo médio de validação etc.) |
+| **RF15** | Documentação de API (Swagger/OpenAPI) em cada microsserviço                               |
 
-> Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição das histórias de usuários, dos requisitos funcionais e não funcionais além das restrições do projeto.
+---
 
-> Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+## 3.2 Requisitos Não Funcionais
 
-## 3.1 Classificação dos Requisitos Funcionais x Requisitos não Funcionais 
+|   **ID**  | **Descrição**                                                                                                          |
+| :-------: | :--------------------------------------------------------------------------------------------------------------------- |
+| **RNF01** | **Desempenho:** APIs respondem em ≤ 300 ms para 95 % das requisições                                                   |
+| **RNF02** | **Disponibilidade:** SLA de 99,5 % de uptime; deploys sem downtime via CI/CD                                           |
+| **RNF03** | **Segurança:** HTTPS obrigatório; senhas com hash BCrypt; JWT expira em 24 h                                           |
+| **RNF04** | **Escalabilidade:** microsserviços escaláveis independentemente                                                        |
+| **RNF05** | **Manutenibilidade:** cobertura de testes ≥ 80 % no backend; linters e análise estática no pipeline                    |
+| **RNF06** | **Interoperabilidade:** APIs RESTful em JSON; URIs e códigos HTTP padronizados                                         |
+| **RNF07** | **Usabilidade:** interfaces responsivas, intuitivas e com feedback claro                                               |
+| **RNF08** | **Portabilidade:** React Native (iOS/Android); containers Docker para backend                                          |
+| **RNF09** | **Documentação:** documentação técnica completa (Contexto, Planejamento, Especificação, Solução, Interface, Conclusão) |
+| **RNF10** | **Conformidade Legal:** LGPD (coleta mínima de dados; termo de uso; política de privacidade; exclusão de conta)        |
 
-> Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
+---
 
-> - **[Requisitos Funcionais (RF)]**(https://pt.wikipedia.org/wiki/Requisito_funcional): correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-> - **[Requisitos Não Funcionais (RNF)]**(https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
+## 3.3 Histórias de Usuário
 
-> Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|  **ID**  | **Como…**           | **Eu quero…**                                                               | **Para que…**                                                      |
+| :------: | :------------------ | :-------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| **US01** | cidadão não logado  | me cadastrar com nome, e-mail, telefone e senha                             | eu possa usar o app e reportar problemas                           |
+| **US02** | cidadão             | fazer login com e-mail/telefone e senha                                     | acessar funcionalidades protegidas                                 |
+| **US03** | cidadão autenticado | editar meu perfil (nome, e-mail, telefone)                                  | manter meus dados atualizados                                      |
+| **US04** | cidadão autenticado | criar um novo reporte com foto, localização, categoria e descrição          | informar à comunidade e ao poder público sobre um problema         |
+| **US05** | cidadão             | ver reportes aprovados de outras pessoas no mapa                            | entender quais problemas já estão registrados                      |
+| **US06** | cidadão             | consultar pontos de descarte por tipo de resíduo e proximidade              | saber onde levar meu lixo corretamente                             |
+| **US07** | cidadão             | acompanhar o status dos meus reportes (`pendente`, `aprovado`, `rejeitado`) | saber se minha contribuição foi aceita ou rejeitada                |
+| **US08** | cidadão             | ver minha pontuação e nível atual                                           | acompanhar meu progresso e me manter motivado                      |
+| **US09** | cidadão             | desbloquear e visualizar conquistas (badges)                                | ter metas claras e sentir reconhecimento                           |
+| **US10** | moderador           | listar reportes pendentes e ver detalhes                                    | validar se os reportes são reais antes de torná-los públicos       |
+| **US11** | moderador           | aprovar ou rejeitar reportes com comentário opcional                        | garantir qualidade e credibilidade das denúncias                   |
+| **US12** | administrador       | atribuir papéis (cidadão, moderador, admin) a usuários                      | garantir que apenas perfis autorizados executem determinadas ações |
+| **US13** | administrador       | ver indicadores (número de reportes, tempo de validação, ranking)           | monitorar a saúde e eficiência do sistema                          |
+| **US14** | sistema             | enviar push notifications de conquistas e níveis                            | manter o usuário engajado e informado                              |
 
+---
 
-### a) Modifique os quadros abaixo, inserindo os Requisitos Funcionais e Não Funcionais do seu projeto. 
+## 3.4 Restrições
 
-Lembre-se de classificá-los de acordo com a prioridade: ALTA, MÉDIA ou BAIXA.
+| **Categoria**            | **Detalhes**                                                                                                                                              |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tecnológicas**         | - Spring Boot no backend<br>- React Native (mobile) e React (web)<br>- PostgreSQL + PostGIS<br>- S3 para imagens<br>- JWT e HTTPS                         |
+| **Prazos**               | - Entrega total até **15 de julho de 2025**<br>- Documentação atualizada até o fim de cada sprint                                                         |
+| **Qualidade**            | - Cobertura de testes ≥ 80 % (backend) e ≥ 70 % (frontend)<br>- Zero erros críticos em linters                                                            |
+| **Legais / Privacidade** | - LGPD: coleta mínima de dados; termo de uso; política de privacidade; exclusão de conta<br>- Logs de auditoria mantidos por ≥ 6 meses                    |
+| **Arquiteturais**        | - Microsserviços com bancos de dados isolados<br>- Comunicação RESTful; broker (RabbitMQ/Kafka) opcional<br>- API Gateway opcional, seguindo padrões REST |
 
-### Requisitos Funcionais
-
-|ID    | Descrição do Requisito                  | Prioridade |
-|------|-----------------------------------------|------------|
-|RF-001| Permitir que o usuário cadastre tarefas |    ALTA    | 
-|RF-002| Emitir um relatório de tarefas no mês   |    MÉDIA   |
-
-
-### Requisitos não Funcionais
-
-|ID     | Descrição do Requisito                                            |Prioridade |
-|-------|-------------------------------------------------------------------|-----------|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel |    MÉDIA  | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s             |    BAIXA  | 
-
-
-
-### b) Modifique o Quadro abaixo e insira as Restrições para o seu projeto.
-
-O projeto está restrito pelos itens apresentados na tabela a seguir.
-
-## Restrições
-
-|ID| Restrição                                               |
-|--|---------------------------------------------------------|
-|01| O software deve ser compatível com Windows e Linux.     |
-|02| O sistema deve ser desenvolvido utilizando Java e MySQL.|
-
-**Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.**
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
-
-
-
-## 3.2 Histórias de Usuários
-> Apresente aqui as histórias de usuário que são RELEVANTES para o projeto de sua solução. É esperado que haja pelo menos 10 histórias de usuário, dependendo do projeto escolhido para desenvolver.
-
-**OBS:** Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-### a) Modifique o Quadro abaixo e insira as histórias de usuários para o seu projeto.
-
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-|  xxxx              | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|  yyy               | Alterar permissões                 | Permitir que possam administrar contas |
-
-
-
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
-
-
--------------------------------------------------------------------------------------------------------------------------------------------
-
-## Tarefas Técnicas (Tasks)
-
-Cada história do usuário é dividida em tarefas específicas para implementação, confome o exemplo abaixo:
-
-## História de Usuário: 
-                     Como cliente, eu quero fazer login no sistema para acessar meu perfil.
-
-## As tarefas técnicas referente a história podem ser:
-                   Criar a interface de login: Implementar a página com os campos de nome de usuário e senha.
-                   Criar validação de entradas: Implementar a verificação de que o usuário inseriu o nome e a senha corretos.
-                   Tratar erros de login: Implementar a lógica que exibe mensagens de erro caso nome e senha incorretos.
-
-
-
-
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+---
