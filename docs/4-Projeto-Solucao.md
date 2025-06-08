@@ -1,19 +1,6 @@
-## 4. Projeto da Solução
-
-<span style="color:red">Pré-requisitos: <a href="03-Modelagem do Processo de Negocio.md"> Modelagem do Processo de Negocio</a></span>
-
+# 4. Projeto da Solução
 ## 4.1. Arquitetura da solução
-
-
-......  COLOQUE AQUI O SEU TEXTO E O DIAGRAMA DE ARQUITETURA .......
-
- Inclua um diagrama da solução e descreva os módulos e as tecnologias
- que fazem parte da solução. Discorra sobre o diagrama.
- 
- **Exemplo do diagrama de Arquitetura**:
- 
- ![Exemplo de Arquitetura](./images/arquitetura-exemplo.png)
- 
+![Arquitetura da solução](https://github.com/user-attachments/assets/86e77b03-d006-451f-96f6-1d396158e599) 
 
 ### 4.2. Protótipos de telas
 
@@ -68,83 +55,23 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER�
 
 #### 4.3.2 Esquema Relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
- 
-As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Relacional”.
+![green_db](https://github.com/user-attachments/assets/eafa2740-9b32-42b9-ad5a-25c058f241ab)
 
-> - [Criando um modelo relacional - Documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/10.2.2?topic=designer-creating-relational-model)
-
-![Exemplo de um modelo relacional](images/modeloRelacional.png "Exemplo de Modelo Relacional.")
 ---
 
-
 #### 4.3.3 Modelo Físico
-
-Insira aqui o script de criação das tabelas do banco de dados.
-
-> **OBS:** Se o aluno utilizar BD NoSQL, ele derá incluir o script aqui também. 
-
-Veja um exemplo:
-
-<code>
-
- -- Criação da tabela Médico
-CREATE TABLE Medico (
-    MedCodigo INTEGER PRIMARY KEY,
-    MedNome VARCHAR(100)
-);
-
-
--- Criação da tabela Paciente
-CREATE TABLE Paciente (
-    PacCodigo INTEGER PRIMARY KEY,
-    PacNome VARCHAR(100)
-);
-
--- Criação da tabela Consulta
-CREATE TABLE Consulta (
-    ConCodigo INTEGER PRIMARY KEY,
-    MedCodigo INTEGER,
-    PacCodigo INTEGER,
-    Data DATE,
-    FOREIGN KEY (MedCodigo) REFERENCES Medico(MedCodigo),
-    FOREIGN KEY (PacCodigo) REFERENCES Paciente(PacCodigo)
-);
-
--- Criação da tabela Medicamento
-CREATE TABLE Medicamento (
-    MdcCodigo INTEGER PRIMARY KEY,
-    MdcNome VARCHAR(100)
-);
-
--- Criação da tabela Prescricao
-CREATE TABLE Prescricao (
-    ConCodigo INTEGER,
-    MdcCodigo INTEGER,
-    Posologia VARCHAR(200),
-    PRIMARY KEY (ConCodigo, MdcCodigo),
-    FOREIGN KEY (ConCodigo) REFERENCES Consulta(ConCodigo),
-    FOREIGN KEY (MdcCodigo) REFERENCES Medicamento(MdcCodigo)
-);
-
-</code>
-
-Este script deverá ser incluído em um arquivo .sql na pasta src\bd.
-
 
 
 
 ### 4.4. Tecnologias
-
-_Descreva qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas._
-
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
-
-
-| **Dimensão**   | **Tecnologia**  |
-| ---            | ---             |
-| SGBD           | MySQL           |
-| Front end      | HTML+CSS+JS     |
-| Back end       | Java SpringBoot |
-| Deploy         | Github Pages    |
+| Camada                       | Tecnologias Principais                                                                   | Ferramentas / Observações                                                                                                                                                                                                                        |
+| ---------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Frontend Mobile**          | React Native (JavaScript/TypeScript)                                                     | • UI: React Native Paper, Native Base<br>• APIs nativas: Expo (ImagePicker, Location), React Native Maps<br>• Estado global: Context API, Redux<br>• Navegação: React Navigation<br>• HTTP: Axios ou fetch                                       |
+| **Frontend Web**             | React (JavaScript/TypeScript)                                                            | • UI: Material-UI, Ant Design<br>• Rotas: React Router<br>• Autenticação/autorização: JWT (localStorage/memória)<br>• Build: Webpack, Vite<br>• Testes: Jest, React Testing Library                                                              |
+| **Backend (Microservices)**  | Spring Boot 3+                                                                           | • Web: Spring Web (MVC/WebFlux)<br>• Persistência: Spring Data JPA (PostgreSQL)<br>• Segurança: Spring Security (JWT)<br>• Monitoramento: Spring Boot Actuator<br>• API: springdoc-openapi/Swagger<br>• Inter-serviços: WebClient/Feign/RabbitMQ |
+| **Banco de Dados**           | PostgreSQL (+ PostGIS)                                                                   | • Instância/schema dedicado por serviço<br>• Consultas geoespaciais via PostGIS<br>• Possível uso de NoSQL (ex: logs)                                                                                                                            |
+| **Armazenamento de Imagens** | AWS S3 (ou MinIO on-premise)                                                             | Upload de fotos via serviço de reportes, armazenamento de URL pública/assinada e distribuição via CDN; evita BLOBs no banco                                                                                                                      |
+| **Testes Automatizados**     | JUnit 5; Spring Boot Test; Jest; React Testing Library; Enzyme; Postman/Newman; Cucumber | • Unitários (backend/frontend)<br>• Integração (H2, Docker-PostgreSQL)<br>• Interface (componentes React/React Native)<br>• Contrato/API end-to-end                                                                                              |
+| **CI/CD**                    | GitHub Actions (ou GitLab CI)                                                            | • Pipelines de lint, build (Docker, bundling frontend), testes<br>• Deploy via Docker Compose, scripts em VM ou Kubernetes<br>• Versionamento com Git e branches estruturadas (dev/prod)                                                         |
+| **Monitoramento & Logging**  | Spring Boot Actuator; ELK Stack; Prometheus; Grafana; Zipkin/Jaeger                      | • Logs centralizados (Logstash → Elasticsearch → Kibana)<br>• Métricas e alertas (Prometheus + Grafana)<br>• Tracing distribuído (Zipkin/Jaeger ou IDs de correlação nos logs)                                                                   |
 

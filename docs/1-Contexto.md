@@ -1,46 +1,27 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+Com a cidade crescendo cada vez mais e a preocupação com a sustentabilidade em alta, fica evidente a necessidade de ferramentas práticas para que a gente, cidadão, possa reportar problemas urbanos — seja um monte de lixo jogado no canto, um buraco perigoso na rua ou um mato que tomou conta da calçada. Mais do que apenas comunicar a prefeitura, essas plataformas aproximam a comunidade e tornam o processo mais transparente. Inspirados em iniciativas como o FixMyStreet do Reino Unido, nosso sistema gamificado quer dar voz ao cidadão, tornando a gestão da cidade mais colaborativa e até divertida.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
-
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+* Descarte de resíduos no lugar errado: em 2023, 41,5% do lixo no Brasil acabou em lixões ou locais não licenciados (Agência Brasil; Jornal O São Paulo), o que provoca alagamentos e até vazamentos de esgoto — só na Grande BH são cerca de 6 000 casos por mês (R7).
+* Buracos e ruas mal conservadas: em São Paulo, 84% da população reclama de buracos como o principal problema urbano; em 2024, foram mais de 3 600 queixas nesse sentido na Ouvidoria do município (Folha; iG).
+* Vegetação descontrolada: calçadas e canteiros sem poda não atrapalham apenas a passagem, mas podem causar entupimentos e riscos de inundação (CNN Brasil).
+* Pouca informação sobre pontos de descarte: mesmo com ecopontos por aí, muita gente não sabe onde levar pilhas, móveis velhos ou entulho, reforçando o descarte irregular.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
-
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
-
+1. Criar um app em React Native para cadastrar/login, enviar reportes (foto, localização, categoria e descrição) e ver no mapa denúncias e pontos de descarte.
+2. Desenvolver um portal web em React para moderadores e administradores validarem reportes, gerenciar usuários e acompanhar indicadores.
+3. Montar um backend em microsserviços (Spring Boot) que cubra autenticação, gestão de usuários, reportes, geolocalização de ecopontos e gamificação (níveis, pontos e conquistas).
+4. Engajar a galera com gamificação: pontos por reportes aprovados, níveis de “contribuidor” e badges como “Primeira denúncia” ou “5 bairros diferentes” (IRIS).
+5. Garantir qualidade e confiabilidade via testes automatizados, documentação em Swagger, CI/CD e monitoramento com Spring Boot Actuator.
+   
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Os canais tradicionais — como ouvidorias e o 156 — têm baixa usabilidade e respostas demoradas, o que acaba desmotivando quem quer ajudar. Com um app simples e recompensas imediatas (pontos, conquistas e notificações), o cidadão sente que sua participação faz diferença de verdade. Isso acelera a solução de problemas, reduz custos públicos (por exemplo, menos gastos com desentupimento) e melhora nosso dia a dia.
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+* Cidadãos (18–65 anos): quem vive na cidade, usa smartphone e quer contribuir de forma prática (e divertida).
+* Moderadores: voluntários ou funcionários que revisam e validam as denúncias, garantindo credibilidade.
+* Administradores: gestores públicos ou parceiros que parametrizam categorias, analisam KPIs (tempo médio de validação, número de reportes por região, ranking de usuários) e usam esses dados para planejar melhorias.
