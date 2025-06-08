@@ -1,69 +1,53 @@
 # 4. Projeto da Solução
-## 4.1. Arquitetura da solução
-![Arquitetura da solução](https://github.com/user-attachments/assets/86e77b03-d006-451f-96f6-1d396158e599) 
 
-### 4.2. Protótipos de telas
+## 4.1 Arquitetura da Solução
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a>.
-A partir das atividades de usuário identificadas na seção anterior, elabore o protótipo de tela de cada uma delas.
-![Exemplo de Wireframe](images/wireframe-example.png)
+![Arquitetura da Solução](https://github.com/user-attachments/assets/86e77b03-d006-451f-96f6-1d396158e599)
 
-São protótipos usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante do layout de elementos fundamentais na interface.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
-
-
-## Diagrama de Classes
-
-O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Classes”.
-
-> - [Diagramas de Classes - Documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.6.1?topic=diagrams-class)
-> - [O que é um diagrama de classe UML? | Lucidchart](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
-
-## Modelo ER
-
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER”.
-
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-
-
-### 4.3. Modelo de dados
-
-O desenvolvimento da solução proposta requer a existência de bases de dados que permitam efetuar os cadastros de dados e controles associados aos processos identificados, assim como recuperações.
-Utilizando a notação do DER (Diagrama Entidade e Relacionamento), elaborem um modelo, na ferramenta visual indicada na disciplina, que contemple todas as entidades e atributos associados às atividades dos processos identificados. Deve ser gerado um único DER que suporte todos os processos escolhidos, visando, assim, uma base de dados integrada. O modelo deve contemplar, também, o controle de acesso de usuários (partes interessadas dos processos) de acordo com os papéis definidos nos modelos do processo de negócio.
-_Apresente o modelo de dados por meio de um modelo relacional que contemple todos os conceitos e atributos apresentados na modelagem dos processos._
-
-#### 4.3.1 Modelo ER
-
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER”.
-
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-
-#### 4.3.2 Esquema Relacional
-
-![green_db](https://github.com/user-attachments/assets/eafa2740-9b32-42b9-ad5a-25c058f241ab)
+> **Figura 4.1** – Diagrama de componentes e fluxos da solução.
 
 ---
 
-#### 4.3.3 Modelo Físico
+## 4.2 Protótipos de Telas
+
+A seguir, alguns protótipos ilustrativos das principais telas do aplicativo:
+
+**Tela de Login**  
+![Protótipo Login](path/to/login.png)
+
+**Mapa Principal**  
+![Protótipo Mapa](path/to/mapa.png)
+
+**Perfil e Histórico**  
+![Protótipo Perfil](path/to/perfil.png)
 
 
+---
 
-### 4.4. Tecnologias
+## 4.3 Modelagem de Dados
+
+### 4.3.1 Diagrama de Classes
+
+![Diagrama de Classes](path/to/diagrama-classes.png)
+
+> **Figura 4.2** – Representação das classes e seus relacionamentos.
+
+### 4.3.2 Modelo Entidade-Relacionamento (ER)
+
+#### 4.3.2.1 Modelo Relacional
+
+![Modelo Relacional](https://github.com/user-attachments/assets/eafa2740-9b32-42b9-ad5a-25c058f241ab)
+
+> **Figura 4.3** – Diagrama relacional contendo tabelas e chaves.
+
+#### 4.3.2.2 Modelo Físico
+
+O script DDL completo está em:  
+```txt
+../src/db/green-drop.sql
+```
+
+### 4.4 Tecnologias
 | Camada                       | Tecnologias Principais                                                                   | Ferramentas / Observações                                                                                                                                                                                                                        |
 | ---------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Frontend Mobile**          | React Native (JavaScript/TypeScript)                                                     | • UI: React Native Paper, Native Base<br>• APIs nativas: Expo (ImagePicker, Location), React Native Maps<br>• Estado global: Context API, Redux<br>• Navegação: React Navigation<br>• HTTP: Axios ou fetch                                       |
