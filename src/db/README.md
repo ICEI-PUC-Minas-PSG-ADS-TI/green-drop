@@ -1,3 +1,5 @@
-## Arquivo .sql
+# Código-fonte do projeto
 
-Adicione aqui os scripts SQL.
+
+Aqui devem ficar os arquivos-fonte do projeto: HTML, CSS, Javascript, imagens, e outros necessários para o 
+funcionamento do sistema.
