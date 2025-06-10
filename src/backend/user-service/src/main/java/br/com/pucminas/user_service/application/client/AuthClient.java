@@ -1,9 +1,9 @@
 package br.com.pucminas.user_service.application.client;
 
 import br.com.pucminas.user_service.config.FeignJsonConfig;
-import br.com.pucminas.user_service.resource.dtos.UserRequestDTO;
+import br.com.pucminas.user_service.application.dto.UserRequestDTO;
 
-import br.com.pucminas.user_service.resource.dtos.UserUpdateDTO;
+import br.com.pucminas.user_service.application.dto.UserUpdateDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

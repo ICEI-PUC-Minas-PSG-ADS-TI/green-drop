@@ -2,15 +2,15 @@ package br.com.pucminas.user_service.application.service;
 
 import br.com.pucminas.user_service.application.client.AuthClient;
 import br.com.pucminas.user_service.application.client.ImageClient;
-import br.com.pucminas.user_service.resource.dtos.UserRequestDTO;
-import br.com.pucminas.user_service.resource.dtos.UserResponseDTO;
-import br.com.pucminas.user_service.resource.dtos.UserUpdateDTO;
-import br.com.pucminas.user_service.resource.exception.ApiException;
-import br.com.pucminas.user_service.resource.exception.ImageDeletionException;
-import br.com.pucminas.user_service.resource.exception.PhotoUploadException;
-import br.com.pucminas.user_service.resource.exception.UserNotFoundException;
-import br.com.pucminas.user_service.domain.entity.User;
-import br.com.pucminas.user_service.infra.repository.UserRepository;
+import br.com.pucminas.user_service.application.dto.UserRequestDTO;
+import br.com.pucminas.user_service.application.dto.UserResponseDTO;
+import br.com.pucminas.user_service.application.dto.UserUpdateDTO;
+import br.com.pucminas.user_service.domain.exception.ApiException;
+import br.com.pucminas.user_service.domain.exception.ImageDeletionException;
+import br.com.pucminas.user_service.domain.exception.PhotoUploadException;
+import br.com.pucminas.user_service.domain.exception.UserNotFoundException;
+import br.com.pucminas.user_service.domain.models.User;
+import br.com.pucminas.user_service.domain.repository.UserRepository;
 
 
 import lombok.RequiredArgsConstructor;
