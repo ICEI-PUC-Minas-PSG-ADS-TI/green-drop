@@ -5,7 +5,6 @@
 /mavenHomeManager.xml
 
 # não versão arquivos de credenciais
-src/backend/auth-service/src/main/resources/serviceAccount.json
-src/backend/user-service/src/main/resources/application-secrets.yml
-src/backend/auth-service/src/main/resources/application-secrets.yml
-src/backend/image-service/src/main/resources/application-secrets.yml
+# Credenciais e secrets
+**/serviceAccount.json
+**/application-secrets.yml

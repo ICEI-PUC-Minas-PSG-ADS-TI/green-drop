@@ -15,7 +15,6 @@ import java.net.URI;
 import java.util.List;
 
 @Tag(name = "User", description = "User management")
-@RequestMapping("/v1/users")
 public interface UserControllerDoc {
     @Operation(summary = "Create user")
     ResponseEntity<URI> create(@RequestPart("user")  UserRequestDTO  user, @RequestPart("photo") MultipartFile  photo);

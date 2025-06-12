@@ -6,8 +6,4 @@ public class UserNotFoundException extends ApiException {
     public UserNotFoundException(String message) {
         super(message, HttpStatus.NOT_FOUND);
     }
-
-    public UserNotFoundException(String message, Throwable cause) {
-        super(message, HttpStatus.NOT_FOUND, cause);
-    }
 }
