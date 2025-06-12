@@ -1,4 +1,4 @@
-package br.com.pucminas.auth_service.exceptions;
+package br.com.pucminas.auth_service.domain.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package br.com.pucminas.auth_service.adapter.docs;
 
-import br.com.pucminas.auth_service.models.dtos.*;
+import br.com.pucminas.auth_service.application.dto.*;
 
 import com.google.firebase.auth.FirebaseAuthException;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package br.com.pucminas.image_service.adapter.in.web.exception;
+package br.com.pucminas.image_service.domain.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

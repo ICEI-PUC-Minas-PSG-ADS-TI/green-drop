@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Environment-dependent path to Maven home directory
+/mavenHomeManager.xml
+
+# não versão arquivos de credenciais
+src/backend/auth-service/src/main/resources/serviceAccount.json
+src/backend/user-service/src/main/resources/application-secrets.yml
+src/backend/auth-service/src/main/resources/application-secrets.yml
+src/backend/image-service/src/main/resources/application-secrets.yml

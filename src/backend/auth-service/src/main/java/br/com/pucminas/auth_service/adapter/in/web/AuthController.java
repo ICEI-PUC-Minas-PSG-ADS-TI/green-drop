@@ -1,8 +1,8 @@
-package br.com.pucminas.auth_service.adapter;
+package br.com.pucminas.auth_service.adapter.in.web;
 
 import br.com.pucminas.auth_service.adapter.docs.AuthControllerDoc;
-import br.com.pucminas.auth_service.models.dtos.*;
-import br.com.pucminas.auth_service.services.AuthService;
+import br.com.pucminas.auth_service.application.dto.*;
+import br.com.pucminas.auth_service.application.service.AuthService;
 
 import com.google.firebase.auth.FirebaseAuthException;
 import lombok.RequiredArgsConstructor;

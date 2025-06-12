@@ -3,6 +3,7 @@ package br.com.pucminas.user_service.adpter.in.web;
 import br.com.pucminas.user_service.adpter.doc.UserControllerDoc;
 import br.com.pucminas.user_service.application.dto.UserRequestDTO;
 import br.com.pucminas.user_service.application.dto.UserResponseDTO;
+import br.com.pucminas.user_service.application.dto.UserUpdateDTO;
 import br.com.pucminas.user_service.application.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -42,8 +43,8 @@ public class UserController implements UserControllerDoc {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(Long id, UserRequestDTO payload) {
-        userService.update(id, payload);
+    public ResponseEntity<Void> update(Long id, UserUpdateDTO payload, MultipartFile photo) {
+        userService.update(id, payload, photo);
         return ResponseEntity.noContent().build();
     }
 

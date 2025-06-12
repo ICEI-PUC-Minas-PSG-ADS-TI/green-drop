@@ -1,5 +1,7 @@
-package br.com.pucminas.auth_service.exceptions;
+package br.com.pucminas.auth_service.adapter.in.web.exception;
 
+import br.com.pucminas.auth_service.domain.exception.ApiException;
+import br.com.pucminas.auth_service.domain.exception.StandardException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

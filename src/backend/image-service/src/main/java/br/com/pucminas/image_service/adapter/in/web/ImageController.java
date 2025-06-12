@@ -1,6 +1,6 @@
 package br.com.pucminas.image_service.adapter.in.web;
 
-import br.com.pucminas.image_service.adapter.in.web.docs.ImageControllerDoc;
+import br.com.pucminas.image_service.adapter.doc.ImageControllerDoc;
 import br.com.pucminas.image_service.application.service.ImageService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class ImageController implements ImageControllerDoc {
     private final ImageService imageService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<URI> upload(MultipartFile file) throws IOException {
+    public ResponseEntity<String> upload(MultipartFile file) throws IOException {
         return ResponseEntity.status(HttpStatus.CREATED).body(imageService.upload(file));
     }
 

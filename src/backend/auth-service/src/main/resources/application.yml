@@ -1,6 +1,7 @@
 spring:
   application:
     name: auth-service
+
 eureka:
   client:
     register-with-eureka: true
@@ -10,10 +11,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${server.port}
+
 firebase:
   config:
     path: serviceAccount.json
-    api-key: AIzaSyD-7v1X2x4g0J6k3q8z5Y5Z5Y5Z5Y5Z5Y
-    auth-url: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword
+    api-key: ${firebase.config.api-key}
+    auth-url: ${firebase.config.auth-url}
+
 server:
   port: 0
