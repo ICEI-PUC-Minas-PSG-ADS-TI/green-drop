@@ -1,4 +1,14 @@
 package br.com.pucminas.user_service.application.dto;
 
-public record UserResponseDTO(String name, String email, String phone, String photoUrl) {
+import java.time.LocalDateTime;
+
+public record UserResponseDTO(
+        Long id,
+        String name,
+        String email,
+        String phone,
+        String photoUrl,
+        LocalDateTime createdAt,
+        String firebaseUid
+) {
 }

@@ -95,7 +95,7 @@ public class UserService {
     public List<UserResponseDTO> list() {
         log.info("list - buscando todos os usuários");
         List<UserResponseDTO> lista = userRepository.findAll().stream()
-                .map(u -> new UserResponseDTO(u.getName(), u.getEmail(), u.getPhone(), u.getPhotoUrl()))
+                .map(u -> new UserResponseDTO(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPhotoUrl(), u.getCreatedAt(), u.getFirebaseUid()))
                 .collect(Collectors.toList());
         log.debug("list - retornando {} usuários", lista.size());
         return lista;
@@ -110,7 +110,7 @@ public class UserService {
                     return new UserNotFoundException("USUÁRIO NÃO ENCONTRADO PARA ID ::: " + id);
                 });
         log.info("getById - usuário encontrado [id={}, email={}]", id, user.getEmail());
-        return new UserResponseDTO(user.getName(), user.getEmail(), user.getPhone(), user.getPhotoUrl());
+        return new UserResponseDTO(user.getId(), user.getName(), user.getEmail(), user.getPhone(), user.getPhotoUrl(), user.getCreatedAt(), user.getFirebaseUid());
     }
 
     @Transactional(readOnly = true)
@@ -128,7 +128,7 @@ public class UserService {
         }
         log.debug("search - encontrados {} usuários", users.size());
         return users.stream()
-                .map(u -> new UserResponseDTO(u.getName(), u.getEmail(), u.getPhone(), u.getPhotoUrl()))
+                .map(u -> new UserResponseDTO(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPhotoUrl(), u.getCreatedAt(), u.getFirebaseUid()))
                 .collect(Collectors.toList());
     }
 

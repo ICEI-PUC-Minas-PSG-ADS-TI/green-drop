@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Report-service
+    name: report-service
 
   config:
     import: optional:classpath:application-secrets.yml
@@ -19,7 +19,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    instance-id: ${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}
 
 server:
   port: 0

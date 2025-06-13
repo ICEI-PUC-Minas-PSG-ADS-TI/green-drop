@@ -16,10 +16,14 @@ spring:
           uri: lb://image-service
           predicates:
             - Path=/v1/images/**
-        - id: image-service
+        - id: auth-service
           uri: lb://auth-service
           predicates:
             - Path=/v1/auth/**
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/v1/reports/**
 eureka:
   client:
     register-with-eureka: true

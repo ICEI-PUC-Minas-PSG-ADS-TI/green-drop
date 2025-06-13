@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -57,7 +58,7 @@ class UserControllerTest {
 
     @Test @DisplayName("GET /v1/users → 200 OK")
     void listUsers() throws Exception {
-        List<UserResponseDTO> dtos = List.of(new UserResponseDTO("X","x@x","123","url"));
+        List<UserResponseDTO> dtos = List.of(new UserResponseDTO(1L,"Nome","e@e","111","u", LocalDateTime.now(), "123"));
         given(userService.list()).willReturn(dtos);
 
         mvc.perform(get("/v1/users"))
@@ -68,7 +69,7 @@ class UserControllerTest {
     @Test @DisplayName("GET /v1/users/{id} → 200 OK")
     void getById() throws Exception {
         given(userService.getById(1L))
-                .willReturn(new UserResponseDTO("Nome","e@e","111","u"));
+                .willReturn(new UserResponseDTO(1L,"Nome","e@e","111","u", LocalDateTime.now(), "123"));
         mvc.perform(get("/v1/users/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("e@e"));
@@ -77,7 +78,7 @@ class UserControllerTest {
     @Test @DisplayName("GET /v1/users/search → 200 OK")
     void search() throws Exception {
         given(userService.search("e", null))
-                .willReturn(List.of(new UserResponseDTO("N","e","p","u")));
+                .willReturn(List.of(new UserResponseDTO(1L,"Nome","e@e","111","u", LocalDateTime.now(), "123")));
         mvc.perform(get("/v1/users/search")
                         .param("email","e"))
                 .andExpect(status().isOk())
