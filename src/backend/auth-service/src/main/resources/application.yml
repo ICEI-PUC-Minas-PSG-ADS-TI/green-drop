@@ -1,6 +1,8 @@
 spring:
   application:
     name: auth-service
+  config:
+    import: optional:application-secrets.yml
 
 eureka:
   client:
@@ -10,13 +12,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    instance-id: ${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}
 
 firebase:
   config:
     path: serviceAccount.json
-    api-key: ${firebase.config.api-key}
-    auth-url: ${firebase.config.auth-url}
 
 server:
   port: 0
