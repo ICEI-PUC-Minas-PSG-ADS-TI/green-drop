@@ -1,0 +1,333 @@
+npx jest __tests__/components/CurrentLocation.test.jsx --updateSnapshot
+  console.error
+    An update to TestComponent inside a test was not wrapped in act(...).
+
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      70 |
+      71 |         // c) Got a position → set it exactly once, with loading=false
+    > 72 |         setState({
+         |         ^
+      73 |           location: pos,
+      74 |           error: null,
+      75 |           loading: false,
+
+      at console.error (node_modules/@testing-library/react-hooks/lib/core/console.js:19:7)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11516:19
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11515:9)
+      at scheduleUpdateOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10234:9)
+      at dispatchSetStateInternal (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4898:13)
+      at dispatchSetState (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4852:7)
+      at setState (components/useCurrentLocation.js:72:9)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    An update to TestComponent inside a test was not wrapped in act(...).
+
+    When testing, code that causes React state updates should be wrapped into act(...):
+
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      70 |
+      71 |         // c) Got a position → set it exactly once, with loading=false
+    > 72 |         setState({
+         |         ^
+      73 |           location: pos,
+      74 |           error: null,
+      75 |           loading: false,
+
+      at console.error (node_modules/@testing-library/react-hooks/lib/core/console.js:19:7)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11516:19
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11515:9)
+      at scheduleUpdateOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10234:9)
+      at dispatchSetStateInternal (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4898:13)
+      at dispatchSetState (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4852:7)
+      at setState (components/useCurrentLocation.js:72:9)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    An update to TestComponent inside a test was not wrapped in act(...).
+
+    When testing, code that causes React state updates should be wrapped into act(...):
+
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      50 |           // If permission is denied, set error + loading = false in one shot:
+      51 |           const errorMessage = 'Permissão negada. ' + LOCATION_PERMISSION_MESSAGE;
+    > 52 |           setState({
+         |           ^
+      53 |             location: null,
+      54 |             error: errorMessage,
+      55 |             loading: false,
+
+      at console.error (node_modules/@testing-library/react-hooks/lib/core/console.js:19:7)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11516:19
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11515:9)
+      at scheduleUpdateOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10234:9)
+      at dispatchSetStateInternal (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4898:13)
+      at dispatchSetState (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4852:7)
+      at setState (components/useCurrentLocation.js:52:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    TypeError: Location.watchPositionAsync(...).then is not a function
+        at then (C:\Users\User\Documents\GitHub\Green-Drop-1\components\useCurrentLocation.js:121:10) 
+        at Object.react-stack-bottom-frame (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:12760:20)
+        at runWithFiberInDEV (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:540:16)
+        at commitHookEffectListMount (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:8226:29)
+        at commitHookPassiveMountEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:8312:11)
+        at recursivelyTraverseReconnectPassiveEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9809:13)
+        at commitPassiveMountOnFiber (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9749:17)
+        at recursivelyTraversePassiveMountEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9646:11)
+        at commitPassiveMountOnFiber (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9773:11)
+        at recursivelyTraversePassiveMountEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9646:11)
+        at commitPassiveMountOnFiber (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9773:11)
+        at recursivelyTraversePassiveMountEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9646:11)
+        at commitPassiveMountOnFiber (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:9676:11)
+        at flushPassiveEffects (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:11277:13)
+        at C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:11159:11
+        at flushActQueue (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react\cjs\react.development.js:862:34)
+        at Object.<anonymous>.process.env.NODE_ENV.exports.act (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\react\cjs\react.development.js:1151:10)
+        at render (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@testing-library\react-hooks\lib\native\pure.js:73:34)
+        at renderHook (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@testing-library\react-hooks\lib\core\index.js:114:5)
+        at Object.<anonymous> (C:\Users\User\Documents\GitHub\Green-Drop-1\__tests__\components\CurrentLocation.test.jsx:100:34)
+        at Generator.next (<anonymous>)
+        at asyncGeneratorStep (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:17)
+        at _next (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@babel\runtime\helpers\asyncToGenerator.js:17:9)
+        at C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@babel\runtime\helpers\asyncToGenerator.js:22:7
+        at new Promise (<anonymous>)
+        at Object.<anonymous> (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\@babel\runtime\helpers\asyncToGenerator.js:14:12)
+        at Promise.then.completed (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\utils.js:298:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\utils.js:231:10)
+        at _callCircusTest (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\run.js:316:40)
+        at _runTest (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\run.js:252:3)
+        at _runTestsForDescribeBlock (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\run.js:126:9)
+        at _runTestsForDescribeBlock (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\run.js:121:9)
+        at run (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\run.js:71:3)
+        at runAndTransformResultsToJestFormat (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+        at jestAdapter (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+        at runTestInternal (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-runner\build\runTest.js:367:16)
+        at runTest (C:\Users\User\Documents\GitHub\Green-Drop-1\node_modules\jest-runner\build\runTest.js:444:34) {
+      [stack]: [Getter/Setter],
+      [message]: 'Location.watchPositionAsync(...).then is not a function'
+    }
+
+    The above error occurred in the <TestComponent> component.
+
+    React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+
+
+       98 |     });
+       99 |
+    > 100 |     const { result } = renderHook(() =>
+          |                                  ^
+      101 |       useCurrentLocation({ watchPosition: true })
+      102 |     );
+      103 |
+
+      at console.error (node_modules/@testing-library/react-hooks/lib/core/console.js:19:7)
+      at defaultOnCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5114:21)
+      at logCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5153:9)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at ErrorBoundary.inst.componentDidCatch.update.callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5200:11)
+      at callCallback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2235:16)
+      at commitCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2255:11)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at commitClassCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8363:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8814:25)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9444:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8819:11)
+      at commitRootImpl (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11174:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10370:19)
+      at performSyncWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1894:7)
+      at flushSyncWorkAcrossRoots_impl (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1761:21)
+      at flushPassiveEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11290:13)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11159:11
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at render (node_modules/@testing-library/react-hooks/lib/native/pure.js:73:34)
+      at renderHook (node_modules/@testing-library/react-hooks/lib/core/index.js:114:5)
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:100:34)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  console.error                                                                                       
+    An update to TestComponent inside a test was not wrapped in act(...).
+
+    When testing, code that causes React state updates should be wrapped into act(...):
+
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      82 |           android: 'Habilite a localização precisa nas configurações do dispositivo.',     
+      83 |         });
+    > 84 |         setState({
+         |         ^
+      85 |           location: null,
+      86 |           error: errorMessage,
+      87 |           loading: false,
+
+      at console.error (node_modules/@testing-library/react-hooks/lib/core/console.js:19:7)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11516:19
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11515:9)
+      at scheduleUpdateOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10234:9)
+      at dispatchSetStateInternal (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4898:13)
+      at dispatchSetState (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4852:7)
+      at setState (components/useCurrentLocation.js:84:9)
+          at Generator.throw (<anonymous>)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _throw (node_modules/@babel/runtime/helpers/asyncToGenerator.js:20:9)
+
+ FAIL  __tests__/components/CurrentLocation.test.jsx
+  useCurrentLocation
+    × deve iniciar com estado de loading (54 ms)                                                      
+    × deve lidar com permissão concedida (6 ms)                                                       
+    × deve lidar com permissão negada (5 ms)                                                          
+    × deve atualizar localização quando watchPosition é true (36 ms)                                  
+    × deve lidar com erro de localização (11 ms)                                                      
+    × deve cancelar watchPosition no unmount (10 ms)                                                  
+                                                                                                      
+  ● useCurrentLocation › deve iniciar com estado de loading                                           
+                                                                                                      
+    TypeError: (0 , _reactHooks.waitFor) is not a function
+
+      43 |     expect(result.current.error).toBeNull();
+      44 |
+    > 45 |     await waitFor(() => {
+         |                  ^
+      46 |       expect(result.current.loading).toBe(false);
+      47 |     });
+      48 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:45:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve lidar com permissão concedida
+
+    TypeError: (0 , _reactHooks.waitFor) is not a function
+
+      59 |     const { result } = renderHook(() => useCurrentLocation());
+      60 |
+    > 61 |     await waitFor(() => {
+         |                  ^
+      62 |       expect(result.current.loading).toBe(false);
+      63 |     });
+      64 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:61:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve lidar com permissão negada
+
+    TypeError: (0 , _reactHooks.waitFor) is not a function
+
+      74 |     const { result } = renderHook(() => useCurrentLocation());
+      75 |
+    > 76 |     await waitFor(() => {
+         |                  ^
+      77 |       expect(result.current.loading).toBe(false);
+      78 |     });
+      79 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:76:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve atualizar localização quando watchPosition é true
+
+    TypeError: (0 , _reactHooks.waitFor) is not a function
+
+      103 |
+      104 |     // Esperar posição inicial
+    > 105 |     await waitFor(() => {
+          |                  ^
+      106 |       expect(result.current.location).toEqual(fakeLocation);
+      107 |     });
+      108 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:105:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve lidar com erro de localização
+
+    TypeError: (0 , _reactHooks.waitFor) is not a function
+
+      131 |     const { result } = renderHook(() => useCurrentLocation());
+      132 |
+    > 133 |     await waitFor(() => {
+          |                  ^
+      134 |       expect(result.current.loading).toBe(false);
+      135 |     });
+      136 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:133:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve cancelar watchPosition no unmount
+
+    GPS desligado
+
+      126 |     });
+      127 |     Location.getCurrentPositionAsync.mockRejectedValue(
+    > 128 |       new Error('GPS desligado')
+          |       ^
+      129 |     );
+      130 |
+      131 |     const { result } = renderHook(() => useCurrentLocation());
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:128:7)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 6 total
+Snapshots:   0 total
+Time:        1.508 s, estimated 2 s
+Ran all test suites matching /__tests__\\components\\CurrentLocation.test.jsx/i.

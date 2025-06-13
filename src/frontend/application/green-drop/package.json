@@ -1,0 +1,93 @@
+{
+  "name": "green-drop",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "reinstall": "npm install --legacy-peer-deps",
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "lint": "eslint --config eslint.config.js --ext .js,.jsx,.ts,.tsx .",
+    "test:unit": "jest --config jest.config.js --passWithNoTests",
+    "test:integration": "jest --config jest.config.js __tests__/integration --passWithNoTests",
+    "test:e2e": "detox test --configuration ios.sim",
+    "test": "npm run lint && npm run test:unit && npm run test:integration && npm run test:e2e",
+    "clean": "powershell -Command \"Remove-Item -Recurse -Force node_modules, package-lock.json\"",
+    "setup": "powershell -Command \"npm install\"",
+    "Up:start": "npm run clean && npm run setup && npx expo start -c  --tunnel"
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourApp.app",
+        "type": "ios.simulator",
+        "name": "iPhone 11"
+      },
+      "android.emu": {
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "type": "android.emulator",
+        "name": "Pixel_4_API_30"
+      }
+    },
+    "test-runner": "jest"
+  },
+  "dependencies": {
+    "@expo/ngrok": "^4.1.3",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-native-fontawesome": "^0.3.2",
+    "@react-navigation/native": "^7.0.14",
+    "@react-navigation/native-stack": "^7.2.0",
+    "axios": "^1.8.1",
+    "expo": "^53.0.7",
+    "expo-camera": "~16.0.18",
+    "expo-image-picker": "~16.1.4",
+    "expo-location": "~18.0.8",
+    "expo-status-bar": "~2.0.1",
+    "prop-types": "^15.8.1",
+    "react": "19.0.0",
+    "react-icons": "^5.5.0",
+    "react-native": "^0.79.2",
+    "react-native-device-info": "^14.0.4",
+    "react-native-maps": "1.18.0",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.10.0",
+    "react-native-svg": "15.8.0",
+    "react-native-svg-transformer": "^1.5.1",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-webview": "13.12.5",
+    "react-navigation": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.26.0",
+    "@jest/globals": "^30.0.0-beta.3",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^13.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "babel-jest": "^30.0.0-beta.3",
+    "detox": "^20.39.0",
+    "detox-cli": "^20.0.0",
+    "eslint": "^9.26.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-native": "^5.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-expo": "^53.0.5",
+    "metro": "^0.82.3",
+    "react-test-renderer": "19.0.0",
+    "typescript": "^5.8.3"
+  },
+  "private": true
+}

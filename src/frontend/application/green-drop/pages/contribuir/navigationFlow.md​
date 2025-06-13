@@ -1,0 +1,25 @@
+# Fluxo de Navegação - Funcionalidade Contribuir
+
+Este documento descreve o fluxo de navegação entre as páginas relacionadas à funcionalidade 
+"Contribuir".
+
+##Importante:
+Antes do usuario poder iniciar a contribuição/no momento que entra na pagina de explicação, 
+deve ser verificado se as permissões de localização e câmera estão disponiveis, e se a 
+localização esta ativada. Caso não estajam, solicitar. Caso negado, impedir de contribuir.
+
+##Requisitos: 
+Localização (Para salvar o local do relato e facilitar averiguação)
+Camera (Para tirar a foto no momento do relato, diminuindo relatos falsos)
+
+##Paginas: 
+1. **explicação**: Introdução e instruções sobre como contribuir. 
+Inclui explicação base de tipos e niveis de importancia.
+
+2. **camera**: Tela com a câmera para tirar foto no momento. 
+Salvar informação de local simultaneamente.
+
+3. **final**: Selecão do tipo de problema e nivel de importancia. 
+Descrição adicional (opicional). Confirmação e envio das informações coletadas.
+
+Fluxo: explicação → camera → final
