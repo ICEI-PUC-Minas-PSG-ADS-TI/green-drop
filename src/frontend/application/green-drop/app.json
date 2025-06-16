@@ -1,15 +1,15 @@
 {
   "expo": {
     "name": "Green Drop",
-    "slug": "Green_Drop",
+    "slug": "Green Drop",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "@/assets/icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": false,
     "jsEngine": "jsc",
     "splash": {
-      "image": "@/assets/splash-icon.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#fefcf1"
     },
@@ -33,14 +33,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "@/assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#fefcf1"
       },
       "package": "com.anonymous.Green_Drop",
       "jsEngine": "jsc"
     },
     "web": {
-      "favicon": "@/assets/favicon.png"
+      "favicon": "./assets/favicon.png"
     }
   }
 }

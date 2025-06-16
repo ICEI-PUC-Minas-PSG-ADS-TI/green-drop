@@ -10,7 +10,8 @@
       "@/services/*": ["services/*"],
       "@/assets/*": ["assets/*"],
       "@/themes/*": ["themes/*"]
-    }
+    },
+    "types": []
   },
   "include": [
     "**/*.js",

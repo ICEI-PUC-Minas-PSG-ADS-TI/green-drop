@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useUserContext } from '@/contexts/UserContext';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/contexts/ThemeContext';
+import { colors } from "@/themes/index";
 import PersonalHeader from '@/components/PersonalHeader';
 import getStyles from './style';
 
@@ -34,11 +35,11 @@ export default function CadastroScreen() {
       <SafeAreaView style={styles.container}>
         <PersonalHeader title="Cadastro" />
         <View style={styles.formBox}>
-          <TextInput placeholder="Nome" value={form.nome} onChangeText={onChange('nome')} style={styles.input} />
-          <TextInput placeholder="E-mail" value={form.email} onChangeText={onChange('email')} style={styles.input} keyboardType="email-address" autoCapitalize="none" />
-          <TextInput placeholder="Senha" value={form.senha} onChangeText={onChange('senha')} style={styles.input} secureTextEntry />
-          <TextInput placeholder="Confirmar senha" value={form.confirmarSenha} onChangeText={onChange('confirmarSenha')} style={styles.input} secureTextEntry />
-          <TextInput placeholder="Telefone" value={form.telefone} onChangeText={onChange('telefone')} style={styles.input} keyboardType="phone-pad" />
+          <TextInput placeholder="Nome" placeholderTextColor={colorScheme === 'dark' ? colors.dark.text : colors.light.text} value={form.nome} onChangeText={onChange('nome')} style={styles.input} />
+          <TextInput placeholder="E-mail" placeholderTextColor={colorScheme === 'dark' ? colors.dark.text : colors.light.text} value={form.email} onChangeText={onChange('email')} style={styles.input} keyboardType="email-address" autoCapitalize="none" />
+          <TextInput placeholder="Senha" placeholderTextColor={colorScheme === 'dark' ? colors.dark.text : colors.light.text} value={form.senha} onChangeText={onChange('senha')} style={styles.input} secureTextEntry />
+          <TextInput placeholder="Confirmar senha" placeholderTextColor={colorScheme === 'dark' ? colors.dark.text : colors.light.text} value={form.confirmarSenha} onChangeText={onChange('confirmarSenha')} style={styles.input} secureTextEntry />
+          <TextInput placeholder="Telefone" placeholderTextColor={colorScheme === 'dark' ? colors.dark.text : colors.light.text} value={form.telefone} onChangeText={onChange('telefone')} style={styles.input} keyboardType="phone-pad" />
           <TouchableOpacity style={[styles.button, loading && styles.buttonDisabled]} onPress={handleCadastro} disabled={loading}>
             <Text style={styles.buttonText}>{loading ? 'Cadastrando...' : 'Cadastrar'}</Text>
           </TouchableOpacity>

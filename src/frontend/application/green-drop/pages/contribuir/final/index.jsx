@@ -32,7 +32,7 @@ const IMPORTANCE_LEVELS = [
   { id: 1, name: 'Menor', description: 'Impacto mínimo, urgência trivial' },
   { id: 2, name: 'Baixo', description: 'Baixo impacto, baixa urgência' },
   { id: 3, name: 'Médio', description: 'Impacto moderado, urgência média' },
-  { id: 4, name: 'Muito Alto', description: 'Alto impacto, alta urgência' },
+  { id: 4, name: 'Alto', description: 'Alto impacto, alta urgência' },
   { id: 5, name: 'Crítico', description: 'Impacto catastrófico, urgência máxima' }
 ];
 

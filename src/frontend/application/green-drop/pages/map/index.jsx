@@ -267,7 +267,7 @@ const MapScreen = ({ initialMarkers = [] }) => {
         onPress={() => navigation.navigate('Conta')}
       >
         <Image
-          source={require('../.@/assets/UserPlaceholder.png')}
+          source={require('@/assets/UserPlaceholder.png')}
           style={styles.iconImage}
           resizeMode="contain"
         />

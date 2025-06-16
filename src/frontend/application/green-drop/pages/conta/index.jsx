@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import PersonalHeader from "@/components/PersonalHeader";
 import getStyles from "./style";
 import { useTheme } from "@/contexts/ThemeContext";
-import UserPlaceholder from "../.@/assets/UserPlaceholder.png";
+import UserPlaceholder from "@/assets/UserPlaceholder.png";
 import { useNavigation } from "@react-navigation/native";
 import { useUserContext } from "@/contexts/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";

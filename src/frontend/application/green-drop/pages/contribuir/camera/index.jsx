@@ -6,7 +6,7 @@ import ContribuirLayout from '../components/ContribuirLayout';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useCameraPermissions } from 'expo-camera';
-import CameraComponent from '@/components/cameraComponent';
+import CameraComponent from '@/components/CameraComponent';
 
 const CameraScreen = () => {
   const { colorScheme } = useTheme();
