@@ -29,9 +29,14 @@ export const colors = {
 
     // ─── POINTS / BADGE TEXT ──────────────────────────────────────
     pointsText: "#FFD43B",             // Points/badge text
+    locked: "#333333" ,                // Locked badge
+    bronze: "#CD7F32" ,                // Bronze badge
+    silver: "#C0C0C0" ,                // Silver badge
+    gold: "#FFD700" ,                  // Gold badge
 
     // ─── OVERLAYS & MODALS ───────────────────────────────────────
     overlayBackground: "rgba(57, 62, 70, 0.8)",   // Overlay background
+    modalOverlay: "rgba(0,0,0,0.5)",              // Modal Overlay background
     
     // ─── FORM / INPUT FIELDS ─────────────────────────────────────
     inputBorder: "#CCCCCC",            // Input borders
@@ -63,6 +68,58 @@ export const colors = {
     
     // ─── DIVIDERS & TOP BORDERS ──────────────────────────────────
     borderTop: "#333333",               // Top borders
+
+    // ─── General STATUS COLORS ─────────────────────────────────────
+    Pending: "#9191b9",
+    Complete: "#00ADB5",
+
+    // ─── REPORT STATUS COLORS ─────────────────────────────────────
+    statusColors: {
+      Pending:   { card: "#FFC107", text: "#000000" }, // Amarelo
+      Accepted:  { card: "#28A745", text: "#FFFFFF" }, // Verde
+      Rejected:  { card: "#DC3545", text: "#FFFFFF" }, // Vermelho
+      default:   { card: "#888888", text: "#FFFFFF" }, // Cinza
+    },
+    // ─── SCREEN CONTAINER ─────────────────────────────────────────
+    containerBackground: "#121212",     // antigo '#121212' na raiz do screen
+
+    // ─── SECTION TITLE (SCREEN) ──────────────────────────────────
+    sectionHeaderText: "#E0E0E0",       // antigo '#e0e0e0'
+
+    // ─── LOCATION ROW ────────────────────────────────────────────
+    locationInfoBackground: "#1E2132",  // antigo '#1e2132'
+    locationInfoText: "#CCCCCC",         // antigo '#cccccc'
+
+    // ─── CATEGORY & PROBLEM BUTTONS ─────────────────────────────
+    categoryButtonBackground: "#1E2132", // antigo '#1e2132'
+    selectedCategoryBackground: "#304050",// antigo '#304050'
+    selectedCategoryBorderColor: "#4080B0", // antigo '#4080b0'
+    categoryNameText: "#E0E0E0",          // antigo '#e0e0e0'
+
+    // ─── PLACEHOLDER ─────────────────────────────────────────────
+    placeholderText: "#808080",          // antigo '#808080'
+
+    // ─── IMPORTANCE DESCRIPTION ──────────────────────────────────
+    importanceDescriptionText: "#AAAAAA", // antigo '#aaaaaa'
+
+    // ─── IMPORTANCE BADGES ───────────────────────────────────────
+    importanceBadge1: "#90EE90",         // Verde claro
+    importanceBadge2: "#98FB98",         // Verde mais claro
+    importanceBadge3: "#FFA500",         // Laranja
+    importanceBadge4: "#FF6347",         // Vermelho‑laranja
+    importanceBadge5: "#FF4500",         // Vermelho
+
+    // ─── MODAL DIVIDER ──────────────────────────────────────────
+    modalDividerColor: "#333333",        // antigo '#333333'
+
+    // ─── SUCCESS MESSAGE ────────────────────────────────────────
+    successMessageText: "#CCCCCC",       // antigo '#cccccc'
+
+    // ─── POINTS VALUE ───────────────────────────────────────────
+    pointsValueColor: "#4080B0",         // antigo '#4080b0'
+
+    // ─── BACK BUTTON OVERLAY ────────────────────────────────────
+    backButtonBackground: "rgba(30,30,30,0.8)", // antigo rgba(30,30,30,0.8)
   },
   light: {
     // ─── MAIN PAGE / SCREEN BACKGROUNDS ────────────────────────────
@@ -92,9 +149,14 @@ export const colors = {
 
     // ─── POINTS / BADGE TEXT ──────────────────────────────────────
     pointsText: "#FFAA00",              // Points/badge text
+    locked: "#333333" ,                // Locked badge
+    bronze: "#CD7F32" ,                // Bronze badge
+    silver: "#C0C0C0" ,                // Silver badge
+    gold: "#FFD700" ,                  // Gold badge
 
     // ─── OVERLAYS & MODALS ───────────────────────────────────────
     overlayBackground: "rgba(255, 255, 255, 0.8)", // Overlay background
+    modalOverlay: "rgba(0,0,0,0.5)",               // Modal Overlay background
     
     // ─── FORM / INPUT FIELDS ─────────────────────────────────────
     inputBorder: "#333333",             // Input borders
@@ -126,33 +188,58 @@ export const colors = {
     
     // ─── DIVIDERS & TOP BORDERS ──────────────────────────────────
     borderTop: "#DDDDDD",               // Top borders
-  },
-  badges: {
-    green1: '#90ee90',
-    green2: '#98FB98',
-    orange: '#FFA500',
-    redOrange: '#FF6347',
-    red: '#FF4500',
-    text: '#ffffff',
-  },
-  custom: {
-    darkBg: '#1e2132',
-    darkAccent: '#304050',
-    lightAccent: '#e6f0fa',
-    blueAccent: '#3498db',
-    blueAccentDark: '#4080b0',
-    grayLight: '#f0f0f0',
-    grayMid: '#cccccc',
-    grayDark: '#aaaaaa',
-    grayDarker: '#777777',
-    grayBorder: '#333333',
-    white: '#ffffff',
-    modalOverlay: 'rgba(0,0,0,0.5)',
-    black: '#000000',                  // Pure black
-    progressFill: '#4CAF50',           // Progress bar fill
-    amber: '#FFC107',                  // Trophy/medal icons
-    orange: '#FF9800',                 // Progress text
-    disabledGray: '#9E9E9E',           // Disabled text
+
+    // ─── General STATUS COLORS ─────────────────────────────────────
+    Pending: "#9191b9",
+    Complete: "#00ADB5",
+    
+    // ─── REPORT STATUS COLORS ─────────────────────────────────────
+    statusColors: {
+      Pending:   { card: "#FFC107", text: "#000000" }, // Amarelo
+      Accepted:  { card: "#28A745", text: "#FFFFFF" }, // Verde
+      Rejected:  { card: "#DC3545", text: "#FFFFFF" }, // Vermelho
+      default:   { card: "#888888", text: "#FFFFFF" }, // Cinza
+    },
+    // ─── SCREEN CONTAINER ─────────────────────────────────────────
+    containerBackground: "#f8f8f8",     // antigo '#f8f8f8'
+
+    // ─── SECTION TITLE (SCREEN) ──────────────────────────────────
+    sectionHeaderText: "#333333",       // antigo '#333333'
+
+    // ─── LOCATION ROW ────────────────────────────────────────────
+    locationInfoBackground: "#E6F0F5",  // antigo '#e6f0f5'
+    locationInfoText: "#333333",         // antigo '#333333'
+
+    // ─── CATEGORY & PROBLEM BUTTONS ─────────────────────────────
+    categoryButtonBackground: "#FFFFFF", // antigo '#ffffff'
+    selectedCategoryBackground: "#E6F0FA",// antigo '#e6f0fa'
+    selectedCategoryBorderColor: "#3498DB",// antigo '#3498db'
+    categoryNameText: "#333333",          // antigo '#333333'
+
+    // ─── PLACEHOLDER ─────────────────────────────────────────────
+    placeholderText: "#999999",          // antigo '#999999'
+
+    // ─── IMPORTANCE DESCRIPTION ──────────────────────────────────
+    importanceDescriptionText: "#777777", // antigo '#777777'
+
+    // ─── IMPORTANCE BADGES ───────────────────────────────────────
+    importanceBadge1: "#90EE90",
+    importanceBadge2: "#98FB98",
+    importanceBadge3: "#FFA500",
+    importanceBadge4: "#FF6347",
+    importanceBadge5: "#FF4500",
+
+    // ─── MODAL DIVIDER ──────────────────────────────────────────
+    modalDividerColor: "#F0F0F0",        // antigo '#f0f0f0'
+
+    // ─── SUCCESS MESSAGE ────────────────────────────────────────
+    successMessageText: "#666666",       // antigo '#666666'
+
+    // ─── POINTS VALUE ───────────────────────────────────────────
+    pointsValueColor: "#3498DB",         // antigo '#3498db'
+
+    // ─── BACK BUTTON OVERLAY ────────────────────────────────────
+    backButtonBackground: "rgba(240,240,240,0.8)", // antigo rgba(240,240,240,0.8)
   },
 };
 

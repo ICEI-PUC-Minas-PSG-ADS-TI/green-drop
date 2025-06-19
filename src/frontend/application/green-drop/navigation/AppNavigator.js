@@ -5,7 +5,6 @@ import MapScreen from '../pages/map';
 import ConfigScreen from '../pages/configuracoes';
 import LoginScreen from '../pages/login';
 import CadastroScreen from '../pages/cadastro';
-import ReportHistory from '../pages/report_history';
 import ProgressoScreen from '../pages/game_pages/progresso';
 import ContributionNavigator from '../pages/contribuir/navigation/ContributionNavigator';
 
@@ -106,10 +105,6 @@ export default function AppNavigator() {
             <Stack.Screen
                 name="Progresso"
                 component={ProgressoScreen}
-            />
-            <Stack.Screen
-                name="Histórico de Relatórios"
-                component={ReportHistory}
             />
             <Stack.Screen
                 name="Login"

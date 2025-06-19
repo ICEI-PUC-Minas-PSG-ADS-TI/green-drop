@@ -11,6 +11,7 @@ export function UserProvider({ children }) {
     const [loading, setLoading] = useState(false);
     const [conquistas, setConquistas] = useState([]);
     const [desafios, setDesafios] = useState([]);
+    const [historico, setHistorico] = useState({});
 
     useEffect(() => {
         if (__DEV__) simularLoginDev();
@@ -34,9 +35,16 @@ export function UserProvider({ children }) {
             { id: 2, titulo: "Contribuidor Ativo", descricao: "Faça 10 contribuições este mês", progresso: "7/10", completo: false },
         ];
 
+        const historicoMock = [
+            { id: 1, title: "Reporte de Calçada", status: "Accepted", points: 20, photo: { uri: "https://picsum.photos/200/200", }, },
+            { id: 2, title: "Buraco na Rua", status: "Pending", points: 15, photo: { uri: "https://picsum.photos/id/237/200/200", }, },
+            { id: 3, title: "Lâmpada Queimada", status: "Rejected", points: 10, photo: { uri: "https://picsum.photos/id/297/200/200", }, },
+        ]
+
         setUser(userMock);
         setConquistas(conquistasMock);
         setDesafios(desafiosMock);
+        setHistorico(historicoMock)
     };
 
     const loginUsuario = async (identificador, senha) => {
@@ -92,6 +100,7 @@ export function UserProvider({ children }) {
                 user,
                 conquistas,
                 desafios,
+                historico,
                 loginStatus,
                 loading,
                 loginUsuario,
