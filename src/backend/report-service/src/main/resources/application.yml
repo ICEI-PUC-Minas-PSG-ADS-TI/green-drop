@@ -11,6 +11,11 @@ spring:
     password: ${spring.datasource.password}
     driver: org.postgresql.Driver
 
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
 eureka:
   client:
     register-with-eureka: true

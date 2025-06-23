@@ -7,7 +7,8 @@ CREATE TABLE users (
     photo_url      VARCHAR(255),
     role           VARCHAR(50) NOT NULL,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    firebase_uid   VARCHAR(100) NOT NULL UNIQUE
+    firebase_uid   VARCHAR(100) NOT NULL unique,
+	points         INTEGER DEFAULT 0
 );
 
 CREATE TABLE report (
@@ -22,6 +23,7 @@ CREATE TABLE report (
     longitude      NUMERIC(11,8),
     category       VARCHAR(100),
     problem_type   VARCHAR(100),
+    relevance      VARCHAR(100),
     CONSTRAINT fk_report_user
         FOREIGN KEY(user_id)
         REFERENCES users(id)
@@ -29,63 +31,66 @@ CREATE TABLE report (
         ON DELETE SET NULL
 );
 
-CREATE TABLE achievement (
-    id          BIGSERIAL PRIMARY KEY,
-    title       VARCHAR(255),
-    description VARCHAR(255)
+CREATE TABLE quest (
+  id           BIGSERIAL PRIMARY KEY,
+  title        VARCHAR NOT NULL,
+  description  TEXT,
+  quest_type   VARCHAR,
+  start_at     TIMESTAMPTZ,
+  end_at       TIMESTAMPTZ,
+  created_at   TIMESTAMPTZ NOT NULL
 );
 
-CREATE TABLE quest (
-    id          BIGSERIAL PRIMARY KEY,
-    title       VARCHAR(255),
-    description VARCHAR(255)
+CREATE TABLE achievement (
+  id          BIGSERIAL PRIMARY KEY,
+  title       VARCHAR NOT NULL,
+  description TEXT,
+  goal_type   VARCHAR NOT NULL,
+  goal_count  INTEGER NOT NULL
 );
 
 CREATE TABLE achievement_quest (
-    achievementsid BIGINT NOT NULL,
-    questsid      BIGINT NOT NULL,
-    goal          INTEGER,
-    PRIMARY KEY (achievementsid, questsid),
-    CONSTRAINT fk_achievement_quest_achievement
-        FOREIGN KEY(achievementsid)
-        REFERENCES achievement(id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_achievement_quest_quest
-        FOREIGN KEY(questsid)
-        REFERENCES quest(id)
-        ON DELETE CASCADE
+  achievement_id BIGINT NOT NULL,
+  quest_id       BIGINT NOT NULL,
+  PRIMARY KEY (achievement_id, quest_id),
+  FOREIGN KEY (achievement_id) REFERENCES achievement(id),
+  FOREIGN KEY (quest_id)       REFERENCES quest(id)
 );
 
-CREATE TABLE achievements_progress (
-    id                   BIGSERIAL PRIMARY KEY,
-    achievementsid       BIGINT    NOT NULL,
-    usersid              BIGINT    NOT NULL,
-    completed_challenges INTEGER,
-    status               VARCHAR(255),
-    CONSTRAINT fk_ap_achievement
-        FOREIGN KEY(achievementsid)
-        REFERENCES achievement(id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_ap_user
-        FOREIGN KEY(usersid)
-        REFERENCES users(id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+CREATE TABLE achievement_goals (
+  id             SERIAL PRIMARY KEY,
+  achievement_id BIGINT  NOT NULL,
+  title          VARCHAR NOT NULL,
+  description    TEXT,
+  target         INTEGER NOT NULL,
+  FOREIGN KEY (achievement_id) REFERENCES achievement(id)
 );
 
-CREATE TABLE quests_progress (
-    id         BIGSERIAL PRIMARY KEY,
-    questsid   BIGINT    NOT NULL,
-    usersid    BIGINT    NOT NULL,
-    progress   INTEGER,
-    status     VARCHAR(255),
-    CONSTRAINT fk_qp_quest
-        FOREIGN KEY(questsid)
-        REFERENCES quest(id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_qp_user
-        FOREIGN KEY(usersid)
-        REFERENCES users(id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+CREATE TABLE user_quest_progress (
+  user_id   BIGINT NOT NULL,
+  quest_id  BIGINT NOT NULL,
+  current   INTEGER NOT NULL DEFAULT 0,
+  done      BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (user_id, quest_id),
+  FOREIGN KEY (quest_id) REFERENCES quest(id)
+);
+
+CREATE TABLE user_achievement_progress (
+  user_id       BIGINT NOT NULL,
+  goal_id       BIGINT NOT NULL,
+  achievement_id BIGINT NOT NULL,
+  current       INTEGER NOT NULL DEFAULT 0,
+  done          BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (user_id, goal_id),
+  FOREIGN KEY (goal_id)        REFERENCES achievement_goals(id),
+  FOREIGN KEY (achievement_id) REFERENCES achievement(id)
+);
+
+CREATE TABLE user_achievements (
+  user_id        BIGINT NOT NULL,
+  achievement_id BIGINT NOT NULL,
+  unlocked       BOOLEAN NOT NULL DEFAULT FALSE,
+  unlocked_at    TIMESTAMPTZ,
+  PRIMARY KEY (user_id, achievement_id),
+  FOREIGN KEY (achievement_id) REFERENCES achievement(id)
 );
