@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "@/themes/index";
+import { colors, shadows } from "@/themes/index";
 
 const getStyles = (theme) => StyleSheet.create({
   button: {
@@ -31,17 +31,23 @@ const getStyles = (theme) => StyleSheet.create({
     marginVertical: 16,
     width: '100%',
   },
+  eyeButton: {
+    padding: 8,
+    position: 'absolute',
+    right: 5,
+    top: "-1",
+  },
   formBox: {
+    alignContent: 'center',
     backgroundColor: theme === 'dark' ? colors.dark.boxBackground : colors.light.boxBackground,
-    flex: 1,
     borderRadius: 12,
     elevation: 2,
-    maxWidth: 400,
-    marginTop: 20,
-    alignContent: 'center',
+    flex: 1,
     justifyContent: 'center',
+    marginTop: 20,
+    maxWidth: 400,
     padding: 24,
-    shadowColor: '#000',
+    shadowColor: shadows[theme].top.shadowColor,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -64,6 +70,16 @@ const getStyles = (theme) => StyleSheet.create({
   linkText: {
     color: theme === 'dark' ? colors.dark.link : colors.light.link,
     fontSize: 15,
+  },
+  passwordContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'relative',
+    width: '100%',
+  },
+  passwordInput: {
+    flex: 1,
+    paddingRight: 40,
   },
   title: {
     color: theme === 'dark' ? colors.dark.text : colors.light.text,

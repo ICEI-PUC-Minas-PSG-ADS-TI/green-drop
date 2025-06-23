@@ -17,13 +17,7 @@ export default function Conta() {
   const navigation = useNavigation();
   const { loginStatus, user, logoutUsuario } = useUserContext();
 
-  // Use real user data if available
-  const usuario = user || {
-    displayName: "Kaiser",
-    telefone: "+55 (31)9999-99999",
-    email: "naoadicionado@example.com",
-    pontos: 90,
-  };
+  const usuario = user || []
 
   return (
     <SafeAreaProvider>
@@ -71,10 +65,10 @@ export default function Conta() {
                 E-mail: {usuario.email}
               </Text>
             </View>
-            <View style={styles.userPointsBox}>
+            {/* <View style={styles.userPointsBox}>
               <Text style={styles.userPointsHead}>Pontos do usuário:</Text>
               <Text style={styles.userPointsText}>{usuario.pontos}</Text>
-            </View>
+            </View> */}
             <TouchableOpacity
               style={styles.authButton}
               onPress={logoutUsuario}

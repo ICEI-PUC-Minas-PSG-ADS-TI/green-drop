@@ -13,11 +13,11 @@ const ProgressoScreen = () => {
   const { colorScheme } = useTheme();
   const T = colors[colorScheme];   
   const styles = getStyles(colorScheme);
-  const { user, desafios = [], conquistas = [], historico = [] } = useUserContext();
+  const { userStats, desafios = [], conquistas = [], historico = [] } = useUserContext();
   const [activeTab, setActiveTab] = useState("desafios");
 
   // User stats
-  const pontos = user?.pontos || 0;
+  const pontos = userStats?.pontos || 0;
   const nivel = Math.floor(pontos / 100) + 1;
   const progresso = pontos % 100;
   const proximoNivel = 100 - progresso;

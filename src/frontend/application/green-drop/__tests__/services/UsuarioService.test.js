@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import * as usuario from '@/services/usuario';
+import * as usuario from '@/services/Usuario';
 import api from '@/services/apiML.js';
 
 jest.mock('@/services/apiML.js', () => ({

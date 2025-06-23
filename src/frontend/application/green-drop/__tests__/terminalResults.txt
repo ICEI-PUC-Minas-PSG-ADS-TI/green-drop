@@ -225,7 +225,7 @@ Summary of all failing tests
       12 |   }
       13 |   
 
-      at Object.<anonymous> (api/usuario.js:10:13)
+      at Object.<anonymous> (api/Usuario.js:10:13)
           at Generator.throw (<anonymous>)
       at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
       at _throw (node_modules/@babel/runtime/helpers/asyncToGenerator.js:20:9)
@@ -241,7 +241,7 @@ Summary of all failing tests
       28 |     }
       29 |   }  
 
-      at Object.<anonymous> (api/usuario.js:27:13)
+      at Object.<anonymous> (api/Usuario.js:27:13)
           at Generator.throw (<anonymous>)
       at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
       at _throw (node_modules/@babel/runtime/helpers/asyncToGenerator.js:20:9)

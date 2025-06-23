@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import useCurrentLocation from '@/components/useCurrentLocation';
-import { LocationService } from '@/services/Location';
+import { locationService } from '@/services/Location';
 import getStyles from './style';
 import { useNavigation } from '@react-navigation/native';
 import BottomBar from "@/components/BottomBar";
@@ -19,10 +19,9 @@ import { mapStyles } from '@/themes/index';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from '@/themes/index';
 
-// Importing the LocationService to fetch nearby locations
 const fetchNearbyLocations = async (latitude, longitude, radius = 5000) => {
   try {
-    return await LocationService.getNearbyLocations(latitude, longitude, radius);
+    return await locationService.getNearbyLocations(latitude, longitude, radius);
   } catch (error) {
     Alert.alert(
       'Erro de Conexão',
@@ -78,7 +77,7 @@ const MapScreen = ({ initialMarkers = [] }) => {
       Alert.alert(
         'Erro',
         'Não foi possível carregar os locais próximos. Tente novamente mais tarde.'
-      );
+      )
     } finally {
       setIsLoading(false);
     }

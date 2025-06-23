@@ -15,7 +15,7 @@ import getStyles from './style';
 import ContribuirLayout from '../components/ContribuirLayout';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { imageUploader } from '@/services/ImageUploader';
+import { reporteService } from '@/services/Reporte';
 
 // ---- Constants ----
 // Categorias e níveis de importância
@@ -127,17 +127,11 @@ export default function FinalScreen() {
     };
 
     try {
-      if (__DEV__) {
-        setPoints({ initial: 30, total: 60 })
-        setSuccess(true);
-      }
-      else {
-        const res = await imageUploader.uploadProblemReport(payload, photoData);
+        const res = await reporteService.uploadProblemReport(payload, photoData);
         console.log('Server response:', res);
         // Also set points from the back end
         // setPoints({ initial: pontosIniciais, total: pontosFinais });
         setSuccess(true);
-      }
     } catch (err) {
       console.error(err);
       Alert.alert('Erro', 'Falha no envio. Tente novamente.');
