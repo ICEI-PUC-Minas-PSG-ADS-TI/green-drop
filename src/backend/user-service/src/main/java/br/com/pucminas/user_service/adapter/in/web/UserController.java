@@ -54,7 +54,7 @@ public class UserController implements UserControllerDoc {
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping(value = "/{id}/points", params = "delta")
+    @PutMapping(value = "/{id}/points", params = "delta")
     public ResponseEntity<Void> adjustPoints(@PathVariable("id") Long id, @RequestParam int delta) {
         userService.updatePoints(id, delta);
         return ResponseEntity.noContent().build();

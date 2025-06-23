@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "user-service", url = "${image.service.url:http://localhost:8080/v1/users}", configuration = FeignJsonConfig.class)
 public interface UserServiceClient {
-    @PatchMapping(value = "/{id}/points", params = "delta")
+    @PutMapping(value = "/{id}/points", params = "delta")
     void adjustPoints(@PathVariable("id") Long id, @RequestParam int delta);
 }
 
