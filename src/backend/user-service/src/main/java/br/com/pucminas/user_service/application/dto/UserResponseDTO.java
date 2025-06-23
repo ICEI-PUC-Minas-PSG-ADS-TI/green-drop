@@ -9,6 +9,7 @@ public record UserResponseDTO(
         String phone,
         String photoUrl,
         LocalDateTime createdAt,
-        String firebaseUid
+        String firebaseUid,
+        Integer points
 ) {
 }

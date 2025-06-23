@@ -28,4 +28,4 @@ feign:
   client:
     config:
       image-service: http://localhost:8080/v1/images
-      auth-service: http://localhost:8080/v1/auth
+      gamification-service: http://localhost:8081/v1/gamification

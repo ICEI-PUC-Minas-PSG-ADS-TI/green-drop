@@ -29,14 +29,18 @@ import java.util.Base64;
 @Slf4j
 @RequiredArgsConstructor
 public class ImageService {
+
+    private final String tag = "ms.image.service.";
+
     @Value("${app.gateway.base-url}")
     private String gatewayBaseUrl;
+
     private final GridFsTemplate gridFsTemplate;
     private final GridFSBucket gridFsBucket;
 
     public String upload(MultipartFile file) {
-        log.info("upload - iniciando salvamento da imagem: originalFilename='{}', contentType='{}', size={} bytes",
-                file.getOriginalFilename(), file.getContentType(), file.getSize());
+        log.info("[{}upload] - iniciando salvamento da imagem [originalFilename={}, contentType={}, size={} bytes]",
+                tag, file.getOriginalFilename(), file.getContentType(), file.getSize());
         try {
             ObjectId fileId = gridFsTemplate.store(
                     file.getInputStream(),
@@ -50,16 +54,16 @@ public class ImageService {
                     .buildAndExpand(idHex)
                     .toUri();
 
-            log.info("upload - imagem salva com sucesso: imageId='{}', url='{}'", idHex, imageUrl);
+            log.info("[{}upload] - imagem salva com sucesso [imageId={}, url={}]", tag, idHex, imageUrl);
             return imageUrl.toString();
 
         } catch (IOException e) {
-            log.error("upload - falha ao ler stream do arquivo '{}'", file.getOriginalFilename(), e);
+            log.error("[{}upload] - falha ao ler stream do arquivo '{}' ", tag, file.getOriginalFilename(), e);
             throw new ImageUploadException(
                     "Falha ao enviar imagem: " + file.getOriginalFilename(), e
             );
         } catch (Exception e) {
-            log.error("upload - erro inesperado ao salvar imagem '{}'", file.getOriginalFilename(), e);
+            log.error("[{}upload] - erro inesperado ao salvar imagem '{}'", tag, file.getOriginalFilename(), e);
             throw new ImageUploadException(
                     "Erro inesperado ao salvar imagem: " + file.getOriginalFilename(), e
             );
@@ -67,13 +71,13 @@ public class ImageService {
     }
 
     public String getById(String imageId) {
-        log.info("getById - iniciando busca da imagem id='{}'", imageId);
+        log.info("[{}getById] - iniciando busca da imagem [id={}]", tag, imageId);
 
         ObjectId objId;
         try {
             objId = new ObjectId(imageId);
         } catch (IllegalArgumentException e) {
-            log.warn("getById - ID de imagem inválido: '{}'", imageId, e);
+            log.warn("[{}getById] - ID de imagem inválido: '{}'", tag, imageId, e);
             throw new ImageNotFoundException("ID de imagem inválido: " + imageId, e);
         }
 
@@ -81,7 +85,7 @@ public class ImageService {
                 Query.query(Criteria.where("_id").is(objId))
         );
         if (fsFile == null) {
-            log.warn("getById - nenhuma imagem encontrada para id='{}'", imageId);
+            log.warn("[{}getById] - nenhuma imagem encontrada para id='{}'", tag, imageId);
             throw new ImageNotFoundException("Imagem não encontrada: " + imageId);
         }
 
@@ -91,36 +95,36 @@ public class ImageService {
             String contentType = fsFile.getMetadata().getString("_contentType");
             String base64 = Base64.getEncoder().encodeToString(data);
 
-            log.info("getById - download concluído: id='{}', size={} bytes, contentType='{}'",
-                    imageId, data.length, contentType);
+            log.info("[{}getById] - download concluído [id={}, size={} bytes, contentType={}]",
+                    tag, imageId, data.length, contentType);
 
             return "data:" + contentType + ";base64," + base64;
 
         } catch (IOException e) {
-            log.error("getById - falha ao ler bytes da imagem id='{}'", imageId, e);
+            log.error("[{}getById] - falha ao ler bytes da imagem [id={}]", tag, imageId, e);
             throw new ImageDownloadException("Falha ao ler imagem: " + imageId, e);
         } catch (Exception e) {
-            log.error("getById - erro inesperado ao baixar imagem id='{}'", imageId, e);
+            log.error("[{}getById] - erro inesperado ao baixar imagem [id={}]", tag, imageId, e);
             throw new ImageDownloadException("Erro ao baixar imagem: " + imageId, e);
         }
     }
 
     public void delete(String imageId) {
-        log.info("delete - iniciando remoção da imagem id='{}'", imageId);
+        log.info("[{}delete] - iniciando remoção da imagem [id={}]", tag, imageId);
 
         ObjectId objId;
         try {
             objId = new ObjectId(imageId);
         } catch (IllegalArgumentException e) {
-            log.warn("delete - ID de imagem inválido: '{}'", imageId, e);
+            log.warn("[{}delete] - ID de imagem inválido: '{}'", tag, imageId, e);
             throw new ImageNotFoundException("ID de imagem inválido: " + imageId, e);
         }
 
         try {
             gridFsTemplate.delete(Query.query(Criteria.where("_id").is(objId)));
-            log.info("delete - imagem removida com sucesso id='{}'", imageId);
+            log.info("[{}delete] - imagem removida com sucesso [id={}]", tag, imageId);
         } catch (Exception e) {
-            log.error("delete - falha ao deletar imagem id='{}'", imageId, e);
+            log.error("[{}delete] - falha ao deletar imagem [id={}]", tag, imageId, e);
             throw new ImageDeletionException("Falha ao deletar imagem: " + imageId, e);
         }
     }

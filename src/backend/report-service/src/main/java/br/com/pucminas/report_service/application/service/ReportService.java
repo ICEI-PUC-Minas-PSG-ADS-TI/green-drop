@@ -1,6 +1,8 @@
 package br.com.pucminas.report_service.application.service;
 
+import br.com.pucminas.report_service.application.client.GamificationClient;
 import br.com.pucminas.report_service.application.client.ImageClient;
+import br.com.pucminas.report_service.application.dto.GamificationEventDTO;
 import br.com.pucminas.report_service.application.dto.ReportRequestDTO;
 import br.com.pucminas.report_service.domain.exception.ApiException;
 import br.com.pucminas.report_service.domain.exception.PhotoUploadException;
@@ -27,124 +29,131 @@ import java.util.List;
 public class ReportService {
     private final ReportRepository repository;
     private final ImageClient imageClient;
+    private final GamificationClient gamificationClient;
+    private final String tag = "ms.report.service.";
 
     @Transactional(rollbackFor = Exception.class)
     public URI create(ReportRequestDTO dto, MultipartFile photo) {
-        log.info("create - iniciando criação de report [userId={}, description={}]", dto.userId(), dto.description());
+        log.info("[{}create] Criando novo report [userId={}, description={}]", tag, dto.userId(), dto.description());
         String photoUrl = null;
         try {
-            log.debug("uploadPhoto - iniciando upload de foto para userId={}", dto.userId());
             photoUrl = uploadPhoto(photo);
-            String imageId = extractImageId(photoUrl);
-            log.debug("uploadPhoto - concluído upload [photoUrl={} (imageId={})]", photoUrl, imageId);
-            Report report = new Report();
-            report.setUserId(dto.userId());
-            report.setDescription(dto.description());
-            report.setCreatedAt(dto.createdAt());
-            report.setLatitude(dto.latitude());
-            report.setLongitude(dto.longitude());
-            report.setCategory(dto.category());
-            report.setProblemType(dto.problemType());
-            report.setPhotoUrl(photoUrl);
-            report.setStatus("PENDING");
-
-            log.debug("create - salvando report no banco [userId={}, category={}, problemType={}]",
-                    dto.userId(), dto.category(), dto.problemType());
+            Report report = buildReport(dto, photoUrl);
             Report saved = repository.save(report);
-            log.info("create - report criado com sucesso [id={}]", saved.getId());
+
+            notifyReportCreated(report);
+
+            log.info("create - Report criado com sucesso [id={}]", saved.getId());
             return URI.create("/v1/reports/" + saved.getId());
 
         } catch (Exception ex) {
-            log.error("create - erro durante criação de report, iniciando rollback [photoUrl={}]", photoUrl, ex);
-            if (photoUrl != null) {
-                try {
-                    String imageId = extractImageId(photoUrl);
-                    imageClient.delete(imageId);
-                    log.debug("create - cleanup: imagem {} deletada", imageId);
-                } catch (Exception e) {
-                    log.error("create - cleanup falhou ao remover foto do storage {}", photoUrl, e);
-                }
-            }
+            log.error("create - Falha ao criar report, iniciando rollback [photoUrl={}]", photoUrl, ex);
+            cleanupImage(photoUrl);
             throw ex;
         }
     }
 
     @Transactional(readOnly = true)
     public List<Report> listAll() {
-        log.info("listAll - buscando todos os reports");
+        log.info("listAll - Buscando todos os reports");
         return repository.findAll();
     }
 
     @Transactional(readOnly = true)
     public Report getById(Long id) {
-        log.info("getById - buscando report id={}", id);
+        log.info("getById - Buscando report [id={}]", id);
         return repository.findById(id)
                 .orElseThrow(() -> {
-                    log.warn("getById - report não encontrado id={}", id);
-                    return new ReportNotFound("REPORT NÃO ENCONTRADO ::: " + id);
+                    log.warn("getById - Report não encontrado [id={}]", id);
+                    return new ReportNotFound("Report não encontrado: " + id);
                 });
     }
 
     @Transactional(readOnly = true)
     public List<Report> listByUserId(Long userId) {
-        log.info("listByUserId - buscando reports do usuário id={}", userId);
+        log.info("listByUserId - Buscando reports do usuário [userId={}]", userId);
         return repository.findAllByUserId(userId);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void updateStatus(Long id,  String status) {
-        log.info("updateStatus - iniciando atualização de status do report id={} para {}", id, status);
-        Report existing = repository.findById(id)
+    public void updateStatus(Long id, String status) {
+        log.info("updateStatus - Atualizando status do report [id={}, novoStatus={}]", id, status);
+        Report report = repository.findById(id)
                 .orElseThrow(() -> {
-                    log.warn("updateStatus - report não encontrado id={}", id);
-                    return new ReportNotFound("REPORT NÃO ENCONTRADO ::: " + id);
+                    log.warn("updateStatus - Report não encontrado [id={}]", id);
+                    return new ReportNotFound("Report não encontrado: " + id);
                 });
-        existing.setStatus(status);
-        repository.save(existing);
-        log.info("updateStatus - status atualizado com sucesso id={}", id);
+
+        report.setStatus(status);
+        repository.save(report);
+        log.info("updateStatus - Status atualizado com sucesso [id={}]", id);
     }
 
     @Transactional
     public void delete(Long id) {
-        log.info("delete - iniciando remoção de report id={}", id);
-        Report existing = repository.findById(id)
+        log.info("delete - Removendo report [id={}]", id);
+        Report report = repository.findById(id)
                 .orElseThrow(() -> {
-                    log.warn("delete - report não encontrado id={}", id);
-                    return new ReportNotFound("REPORT NÃO ENCONTRADO ::: " + id);
+                    log.warn("delete - Report não encontrado [id={}]", id);
+                    return new ReportNotFound("Report não encontrado: " + id);
                 });
-        try {
-            String imageId = extractImageId(existing.getPhotoUrl());
-            imageClient.delete(imageId);
-            log.debug("delete - imagem {} deletada", imageId);
-        } catch (RestClientException e) {
-            log.error("delete - falha ao remover foto do storage para report id={}", id, e);
-            throw new ApiException("FALHA AO DELETAR FOTO DO REPORT ::: " + id, HttpStatus.INTERNAL_SERVER_ERROR, e);
-        }
+
+        cleanupImage(report.getPhotoUrl());
         repository.deleteById(id);
-        log.info("delete - report id={} deletado com sucesso", id);
+        log.info("delete - Report removido com sucesso [id={}]", id);
+    }
+
+    private Report buildReport(ReportRequestDTO dto, String photoUrl) {
+        Report report = new Report();
+        report.setUserId(dto.userId());
+        report.setDescription(dto.description());
+        report.setCreatedAt(dto.createdAt());
+        report.setLatitude(dto.latitude());
+        report.setLongitude(dto.longitude());
+        report.setCategory(dto.category());
+        report.setProblemType(dto.problemType());
+        report.setPhotoUrl(photoUrl);
+        report.setStatus("PENDING");
+        report.setRelevance(dto.relevance());
+        return report;
+    }
+
+    private void notifyReportCreated(Report dto) {
+        try {
+            var event = new GamificationEventDTO(dto.getUserId(), dto.getProblemType(), dto.getCategory(), dto.getRelevance());
+            gamificationClient.processReportCreated(event);
+            log.debug("[{}gamification] reportCreated enviado [reportId={}, userId={}]", tag, dto.getId(), dto.getUserId());
+        } catch (Exception ex) {
+            log.warn("[{}gamification] Falha ao notificar criação de report", tag, ex);
+        }
     }
 
     private String uploadPhoto(MultipartFile photo) {
-        log.debug("uploadPhoto - iniciando upload de foto (tamanho={} bytes)", photo.getSize());
         try {
-            String url = imageClient.upload(photo);
-            log.debug("uploadPhoto - upload concluído, url={}", url);
-            return url;
+            log.debug("uploadPhoto - Enviando foto (tamanho={} bytes)", photo.getSize());
+            return imageClient.upload(photo);
         } catch (IOException | RestClientException e) {
-            log.error("uploadPhoto - erro ao enviar foto", e);
-            throw new PhotoUploadException("FALHA AO ENVIAR FOTO DO REPORT ::: ", e);
+            log.error("uploadPhoto - Falha ao enviar foto", e);
+            throw new PhotoUploadException("Erro ao enviar imagem para o report", e);
+        }
+    }
+
+    private void cleanupImage(String photoUrl) {
+        if (photoUrl == null || photoUrl.isBlank()) return;
+        try {
+            String imageId = extractImageId(photoUrl);
+            imageClient.delete(imageId);
+            log.debug("cleanupImage - Imagem removida com sucesso [imageId={}]", imageId);
+        } catch (Exception e) {
+            log.error("cleanupImage - Falha ao remover imagem do storage [url={}]", photoUrl, e);
         }
     }
 
     private String extractImageId(String photoUrl) {
-        log.trace("extractImageId - photoUrl={}", photoUrl);
         if (photoUrl == null || photoUrl.isBlank()) {
-            log.error("extractImageId - URL da foto inválida");
-            throw new ApiException("URL DA FOTO INVÁLIDA PARA O REPORT ::: ", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new ApiException("URL da imagem inválida", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         String[] parts = photoUrl.split("/");
-        String imageId = parts[parts.length - 1];
-        log.trace("extractImageId - imageId={}", imageId);
-        return imageId;
+        return parts[parts.length - 1];
     }
 }
