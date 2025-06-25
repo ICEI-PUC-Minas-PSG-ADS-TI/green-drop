@@ -49,6 +49,7 @@ export default function CadastroScreen() {
     })();
   }, []);
 
+  // Função para selecionar imagem com verificação de tamanho
   const pickImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -57,7 +58,13 @@ export default function CadastroScreen() {
       });
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
-        setForm({ ...form, imagem: result.assets[0] });
+        const asset = result.assets[0];
+        // Verifica se o tamanho da imagem excede 10 MB
+        if (asset.fileSize && asset.fileSize > 10 * 1024 * 1024) {
+          Alert.alert('Imagem muito grande', 'Selecione uma imagem de até 10 MB');
+          return;
+        }
+        setForm({ ...form, imagem: asset });
       }
     } catch (err) {
       console.error('Erro ao selecionar imagem:', err);
@@ -141,7 +148,7 @@ export default function CadastroScreen() {
               style={styles.image}
               resizeMode="cover"
             />
-            <Text style={styles.imageText}>Adicionar Foto</Text>
+            <Text style={styles.imageText}>Adicionar Foto (10MB)</Text>
           </TouchableOpacity>
 
           <TextInput

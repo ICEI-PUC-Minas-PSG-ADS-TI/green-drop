@@ -81,21 +81,59 @@ const getStyles = (theme) => {
       shadowOpacity: 0.1,
       shadowRadius: 4,
     },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+    },
+    thumbnail: {
+      width: 60,
+      height: 60,
+      borderRadius: 8,
+      marginRight: 12,
+      backgroundColor: T.divider,
+    },
+    infoContainer: {
+      flex: 1,
+    },
+    badge: {
+      alignSelf: 'flex-start',
+      paddingHorizontal: 6,
+      paddingVertical: 2,
+      borderRadius: 4,
+      marginBottom: 4,
+    },
+    badgeText: {
+      fontSize: 12,
+      fontWeight: '600',
+    },
+    cardTitle: {
+       color: T.title,
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 2,
+    },
+    cardText: {
+      color: T.textTertiary,
+      fontSize: 14,
+      marginBottom: 4,
+    },
     cardHeader: {
       alignItems: "center",
       flexDirection: "row",
       marginBottom: 5,
     },
-    cardTitle: {
-      color: T.title,
-    fontSize: 16,
-    fontWeight: "bold",
-   },
-   cardText: {
-     color: T.textTertiary,
-    fontSize: 14,
-     marginBottom: 8,
-   },
+    relevanceText: {
+      fontSize: 12,
+      fontStyle: 'italic',
+    },
+    footer: {
+      marginTop: 8,
+      alignItems: 'flex-end',
+    },
+    statusText: {
+      fontSize: 14,
+      fontWeight: '600',
+    },
 
    // ─── ESTADOS Completo ──────────────────────────────
    completoText: {

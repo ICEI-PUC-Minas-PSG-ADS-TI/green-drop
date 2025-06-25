@@ -1,6 +1,7 @@
 /* eslint-disable no-console*/
 /* global console, FormData*/
 import { decodeJWT } from '../utils/jwt';
+import RNFS from 'react-native-fs';
 import api from './apiML';
 
 class UsuarioService {
@@ -47,30 +48,37 @@ class UsuarioService {
     }
   }
 
-  async cadastro({ nome, email, senha, telefone, imagem }) {
+
+async cadastro({ nome, email, senha, telefone, imagem }) {
   try {
     const form = new FormData();
 
-    // JSON string
-    const userObj = { name: nome, email, phone: telefone, password: senha };
-    form.append('user', JSON.stringify(userObj));
+    // 1. Dados do usuário (JSON)
+    form.append('user', JSON.stringify({ 
+      name: nome, 
+      email, 
+      phone: telefone, 
+      password: senha 
+    }));
 
-    // Foto (se existir)
+    // 2. Processamento da imagem (CORREÇÃO)
     if (imagem) {
+      const fileContent = await RNFS.readFile(imagem.uri, 'base64');
       form.append('photo', {
-        uri: imagem.uri,
+        uri: `data:${imagem.type || 'image/jpeg'};base64,${fileContent}`,
         name: imagem.fileName || 'photo.jpg',
         type: imagem.type || 'image/jpeg',
       });
     }
 
-    const response = await api.post('/users', form);
-
-    if (response.status !== 201) {
-      throw new Error(`Erro no cadastro: status ${response.status}`);
-    }
+    // 3. Envio com headers
+    const response = await api.post('/users', form, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    
     return response.data;
-
   } catch (error) {
     console.error(
       'Erro ao cadastrar usuário:',

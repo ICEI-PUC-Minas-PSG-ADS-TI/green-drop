@@ -14,9 +14,33 @@ class GameService {
         { id: 2, titulo: "Contribuidor Ativo", descricao: "Faça 10 contribuições este mês", progresso: "7/10", completo: false },
       ],
       historico: [
-        { id: 1, title: "Reporte de Calçada", status: "Accepted", points: 20, photo: { uri: "https://picsum.photos/200/200" } },
-        { id: 2, title: "Buraco na Rua", status: "Pending", points: 15, photo: { uri: "https://picsum.photos/id/237/200/200" } },
-        { id: 3, title: "Lâmpada Queimada", status: "Rejected", points: 10, photo: { uri: "https://picsum.photos/id/297/200/200" } },
+        {
+          id: 1,
+          category: 'infra',                    // id da categoria
+          status: 'Accepted',                   // situação atual
+          problemType: 'Calçadas Danificadas',  // tipo específico
+          relevance: 3,                         // nível de relevância (1–5)
+          description: 'Calçada quebrada na Rua das Flores, dificultando passagem de pedestres.',
+          photo: { uri: 'https://picsum.photos/200/200' }
+        },
+        {
+          id: 2,
+          category: 'infra',
+          status: 'Pending',
+        problemType: 'Buracos na Via',
+          relevance: 2,
+          description: 'Avenida Principal com vários buracos, risco de acidentes.',
+          photo: { uri: 'https://picsum.photos/id/237/200/200' }
+        },
+        {
+          id: 3,
+          category: 'servicos',
+          status: 'Rejected',
+          problemType: 'Quedas de Energia Elétrica',
+          relevance: 4,
+          description: 'Frequentes quedas de energia no bairro Nova Vista durante a noite.',
+          photo: { uri: 'https://picsum.photos/id/297/200/200' }
+        },
       ],
     };
   }

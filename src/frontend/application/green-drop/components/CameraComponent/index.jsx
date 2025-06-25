@@ -27,6 +27,8 @@ export default function CameraComponent({ onPhotoTaken }) {
     const isDarkMode = colorScheme === 'dark';
     const styles = getStyles(colorScheme);
 
+    const MAX_PHOTO_SIZE_BYTES = 10 * 1024 * 1024;
+
     useEffect(() => {
         if (permission && !permission.granted) requestPermission();
     }, [permission]);
@@ -41,10 +43,27 @@ export default function CameraComponent({ onPhotoTaken }) {
             try {
                 setLoading(true);
                 const result = await cameraRef.current.takePictureAsync({
-                    quality: 1,
+                    quality: 0.2,
                     exif: true,
                     base64: true,
                 });
+                
+                // Verificar o tamanho da foto
+                if (result.base64) {
+                    // Calcula tamanho aproximado em bytes: (base64Length * 3) / 4
+                    const base64Length = result.base64.length;
+                    const sizeInBytes = Math.floor((base64Length * 3) / 4);
+                    
+                    if (sizeInBytes > MAX_PHOTO_SIZE_BYTES) {
+                        Alert.alert(
+                            'Foto muito grande',
+                            `A foto tem ${Math.round(sizeInBytes / (1024 * 1024))} MB. O tamanho máximo é 10 MB.`,
+                            [{ text: 'OK', onPress: () => setLoading(false) }]
+                        );
+                        return;
+                    }
+                }
+                
                 setPhoto(result);
             } catch (err) {
                 Alert.alert('Erro', 'Não foi possível tirar a foto.');
@@ -75,14 +94,14 @@ export default function CameraComponent({ onPhotoTaken }) {
         }
     };
 
-  const getFlashIcon = () => {
-    switch(flash) {
-      case 'on': return 'flash';
-      case 'off': return 'flash-off';
-      case 'auto': return 'flash-outline';
-      default: return 'flash-off';
-    }
-  };
+    const getFlashIcon = () => {
+        switch(flash) {
+            case 'on': return 'flash';
+            case 'off': return 'flash-off';
+            case 'auto': return 'flash-outline';
+            default: return 'flash-off';
+        }
+    };
 
   // Se estiver carregando, mostrar indicador
   if (!permission) {

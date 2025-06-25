@@ -13,6 +13,7 @@ import {
 import { useTheme } from '@/contexts/ThemeContext';
 import getStyles from './style';
 import ContribuirLayout from '../components/ContribuirLayout';
+import { useUserContext } from '@/contexts/UserContext';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { reporteService } from '@/services/Reporte';
@@ -72,6 +73,7 @@ export default function FinalScreen() {
   const { colorScheme } = useTheme();
   const styles = getStyles(colorScheme);
   const isDarkMode = colorScheme === 'dark';
+  const { user } = useUserContext();
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -117,20 +119,20 @@ export default function FinalScreen() {
 
     setLoading(true);
     const payload = {
-      category: category.id,
-      problemType,
-      importance: importance.id,
+      userId: 1 || user.id,  // Atualmente não roda, faz travar
       description: description.trim(),
+      createdAt: new Date().toISOString(),
       latitude: photoData?.location?.latitude,
       longitude: photoData?.location?.longitude,
-      createdAt: new Date().toISOString(),
+      category: category.id,
+      problemType,
+      relevance: importance.id,
+      status: "CREATED",
     };
 
     try {
         const res = await reporteService.uploadProblemReport(payload, photoData);
         console.log('Server response:', res);
-        // Also set points from the back end
-        // setPoints({ initial: pontosIniciais, total: pontosFinais });
         setSuccess(true);
     } catch (err) {
       console.error(err);
@@ -190,15 +192,6 @@ export default function FinalScreen() {
           <Text style={styles.successMessage}>
             Obrigado por contribuir para melhorar nossa cidade. Seu relato será analisado em breve.
           </Text>
-
-          <View style={styles.pointsContainer}>
-            <Text style={styles.pointsText}>Você ganhou</Text>
-            <Text style={styles.pointsValue}>{points.initial} pontos</Text>
-            <Text style={styles.pointsSubtext}>
-              Mais {points.total - points.initial} pontos serão concedidos após a verificação!
-            </Text>
-          </View>
-
           <TouchableOpacity style={styles.doneButton} onPress={closeSuccess}>
             <Text style={styles.doneButtonText}>Concluir</Text>
             <Ionicons name="checkmark" size={20} color="#ffffff" />

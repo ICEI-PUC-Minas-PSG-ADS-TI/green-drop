@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, FlatList, Image } from "react-native";
 import { useTheme } from "@/contexts/ThemeContext";
-import { colors } from "@/themes/index";
+import { colors } from '@/themes/index';
 import getStyles from "./style";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMedal, faTasks, faHistory, faTrophy } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,7 @@ import BottomBar from "@/components/BottomBar";
 
 const ProgressoScreen = () => {
   const { colorScheme } = useTheme();
-  const T = colors[colorScheme];   
+  const T = colors[colorScheme];
   const styles = getStyles(colorScheme);
   const { userStats, desafios = [], conquistas = [], historico = [] } = useUserContext();
   const [activeTab, setActiveTab] = useState("desafios");
@@ -21,38 +21,77 @@ const ProgressoScreen = () => {
   const nivel = Math.floor(pontos / 100) + 1;
   const progresso = pontos % 100;
   const proximoNivel = 100 - progresso;
-  
-  const ReportItem = ({ item }) => {
-    const { card: cardColor, text: textColor } = T.statusColors[item.status] || T.statusColors.default;
 
-    return (
-      <View style={[styles.card, { backgroundColor: cardColor }]}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image 
-            source={{ uri: item.photo.uri }} 
-            style={{ 
-              width: 60, 
-              height: 60, 
-              borderRadius: 8,
-              marginRight: 12,
-              backgroundColor: styles.medalIconDisabled.color
-            }} 
+  const relevanceLabels = ['Menor', 'Baixo', 'Médio', 'Alto', 'Crítico'];
+
+  const ReportItem = ({ item }) => {
+  // Usar cores do tema atual (T) em vez do objeto completo (C)
+  const statusColors = T.statusColors || {};
+  
+  // Obter cores com fallback seguro
+  const statusKey = item.status || 'default';
+  const { card: cardColor, text: textColor } = statusColors[statusKey] || 
+    statusColors.default || { 
+      card: T.surface, 
+      text: T.text 
+    };
+
+  return (
+    <View style={[styles.card, { backgroundColor: cardColor }]}>
+      <View style={styles.row}>
+        {/* Fallback para imagens ausentes */}
+        {item.photo?.uri ? (
+          <Image
+            source={{ uri: item.photo.uri }}
+            style={styles.thumbnail}
+            //defaultSource={require('@/assets/placeholder.png')} // Adicione um placeholder
           />
-          <View style={{ flex: 1 }}>
-            <Text style={[styles.cardTitle, { color: textColor }]}>
-              {item.title}
+        ) : (
+          <View style={[styles.thumbnail, { backgroundColor: T.divider }]} />
+        )}
+
+        <View style={styles.infoContainer}>
+          {/* Badge de categoria */}
+          {item.category && (
+            <View style={[styles.badge, { backgroundColor: T.border }]}>
+              <Text style={[styles.badgeText, { color: T.title }]}>
+                {item.category}
+              </Text>
+            </View>
+          )}
+
+          {/* Tipo de problema com fallback */}
+          <Text style={[styles.cardTitle, { color: textColor }]}>
+            {item.problemType || 'Problema não especificado'}
+          </Text>
+
+          {/* Descrição com fallback */}
+          <Text
+            style={[styles.cardText, { color: textColor }]}
+            numberOfLines={2}
+          >
+            {item.description || 'Sem descrição'}
+          </Text>
+
+          {/* Relevância com validação de índice */}
+          {item.relevance && (
+            <Text style={[styles.relevanceText, { color: T.link }]}>
+              Relevância: {relevanceLabels[item.relevance - 1] || 'Não definida'}
             </Text>
-            <Text style={[styles.cardText, { color: textColor, marginBottom: 0 }]}>
-              Status: {item.status}
-            </Text>
-          </View>
+          )}
         </View>
-        <Text style={[styles.completoText, { color: textColor, alignSelf: 'flex-end' }]}>
-          {item.points} pontos
+      </View>
+
+      {/* Status com fallback */}
+      <View style={styles.footer}>
+        <Text style={[styles.statusText, { color: textColor }]}>
+          Status: {item.status || 'Não informado'}
         </Text>
       </View>
-    );
-  };
+    </View>
+  );
+};
+
 
   return (
     <ProtectedRoute>
