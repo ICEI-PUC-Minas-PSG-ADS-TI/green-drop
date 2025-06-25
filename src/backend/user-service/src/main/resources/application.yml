@@ -29,3 +29,8 @@ feign:
     config:
       image-service: http://localhost:8080/v1/images
       auth-service: http://localhost:8080/v1/auth
+springdoc:
+  api-docs:
+    path: /v1/api-docs/users
+  swagger-ui:
+    path: /v1/docs/users

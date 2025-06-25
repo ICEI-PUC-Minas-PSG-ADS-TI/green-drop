@@ -24,6 +24,10 @@ spring:
           uri: lb://report-service
           predicates:
             - Path=/v1/reports/**
+        - id: gamification-service
+          uri: lb://gamification-service
+          predicates:
+            - Path=/v1/gamification/**
 eureka:
   client:
     register-with-eureka: true

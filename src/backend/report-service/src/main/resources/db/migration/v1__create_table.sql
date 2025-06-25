@@ -9,5 +9,6 @@ CREATE TABLE report (
   latitude       NUMERIC(10,8),
   longitude      NUMERIC(11,8),
   category       VARCHAR(100),
-  problem_type   VARCHAR(100)
+  problem_type   VARCHAR(100),
+  relevance      VARCHAR(100)
 );

@@ -1,6 +1,6 @@
 package br.com.pucminas.auth_service.adapter.in.web;
 
-import br.com.pucminas.auth_service.adapter.docs.AuthControllerDoc;
+import br.com.pucminas.auth_service.adapter.doc.AuthControllerDoc;
 import br.com.pucminas.auth_service.application.dto.*;
 import br.com.pucminas.auth_service.application.service.AuthService;
 

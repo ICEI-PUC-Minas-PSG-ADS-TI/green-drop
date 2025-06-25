@@ -10,6 +10,6 @@ public record ReportRequestDTO(
         BigDecimal latitude,
         BigDecimal longitude,
         String category,
-        String problemType
-        ) {
+        String problemType,
+        String relevance) {
 }

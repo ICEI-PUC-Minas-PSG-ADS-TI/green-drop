@@ -1,7 +1,7 @@
 package br.com.pucminas.user_service.domain.repository;
 
-import br.com.pucminas.user_service.adpter.out.persistence.UserRepositoryJpa;
-import br.com.pucminas.user_service.domain.models.User;
+import br.com.pucminas.user_service.adapter.out.persistence.UserRepositoryJpa;
+import br.com.pucminas.user_service.domain.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -11,6 +11,11 @@ spring:
     password: ${spring.datasource.password}
     driver: org.postgresql.Driver
 
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
 eureka:
   client:
     register-with-eureka: true
@@ -28,4 +33,4 @@ feign:
   client:
     config:
       image-service: http://localhost:8080/v1/images
-      auth-service: http://localhost:8080/v1/auth
+      gamification-service: http://localhost:8081/v1/gamification
