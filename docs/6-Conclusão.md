@@ -1,7 +1,5 @@
 ## 6. Conclusão
 
-<span style="color:red">Pré-requisitos: Ter terminado o desenvolvimento do projeto</span>
-
 
 O projeto Green Drop foi idealizado com o propósito de criar uma solução digital eficiente e acessível para que cidadãos possam reportar problemas urbanos de forma prática, visual e gamificada. Ao unir tecnologia, participação social e elementos lúdicos, o sistema buscou tornar o processo de denúncia mais ágil, transparente e colaborativo, fortalecendo o elo entre a população e a gestão pública.
 
