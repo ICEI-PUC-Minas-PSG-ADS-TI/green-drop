@@ -5,9 +5,8 @@
 
 O projeto Green Drop foi idealizado com o propósito de criar uma solução digital eficiente e acessível para que cidadãos possam reportar problemas urbanos de forma prática, visual e gamificada. Ao unir tecnologia, participação social e elementos lúdicos, o sistema buscou tornar o processo de denúncia mais ágil, transparente e colaborativo, fortalecendo o elo entre a população e a gestão pública.
 
-Durante o desenvolvimento, enfrentamos desafios técnicos e operacionais comuns a projetos com múltiplas camadas (mobile, web, back-end e integração com mapas). Ainda assim, conseguimos entregar uma base funcional mínima com as principais capacidades: autenticação de usuários, visualização de denúncias geolocalizadas, uma estrutura inicial de moderação e elementos básicos de gamificação.
+Durante o desenvolvimento, enfrentamos desafios técnicos e operacionais comuns a projetos com múltiplas camadas (mobile, web, back-end e integração com mapas). Ainda assim, conseguimos entregar um MVP do projeto.
 
-No entanto, devido a problemas relacionados ao envio de imagens, funcionalidades cruciais como o registro de reportes e o cadastro completo de usuários não puderam ser finalizadas. Será necessário realizar correções e aprimoramentos futuros para garantir a estabilidade e o pleno funcionamento da aplicação.
 
 ### Limitações
   
