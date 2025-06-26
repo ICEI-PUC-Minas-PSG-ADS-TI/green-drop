@@ -23,8 +23,8 @@ public class AuthController implements AuthControllerDoc {
     }
 
     @PostMapping
-    public ResponseEntity<String> createFirebaseUser(UserRequestDTO userRequest) throws FirebaseAuthException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createFirebaseUser(userRequest));
+    public ResponseEntity<String> createFirebaseUser(UserRequestDTO userRequest, @RequestParam Long id) throws FirebaseAuthException {
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createFirebaseUser(userRequest, id));
     }
 
     @DeleteMapping

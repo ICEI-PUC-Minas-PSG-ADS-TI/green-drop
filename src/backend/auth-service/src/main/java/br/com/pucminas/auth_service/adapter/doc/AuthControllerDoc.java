@@ -48,7 +48,8 @@ public interface AuthControllerDoc {
                     description = "Dados do usuário a ser criado no Firebase",
                     required = true
             )
-            @org.springframework.web.bind.annotation.RequestBody UserRequestDTO userRequest
+            @org.springframework.web.bind.annotation.RequestBody UserRequestDTO userRequest,
+            Long id
     ) throws FirebaseAuthException;
 
     @DeleteMapping(path = "/firebase/users")

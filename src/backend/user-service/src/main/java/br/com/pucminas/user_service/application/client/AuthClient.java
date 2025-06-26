@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 )
 public interface AuthClient {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    String createFirebaseUser(@RequestBody UserRequestDTO userRequest);
+    String createFirebaseUser(@RequestBody UserRequestDTO userRequest, @RequestParam Long id);
 
     @DeleteMapping
     void deleteFirebaseUser(@RequestParam String uid);
