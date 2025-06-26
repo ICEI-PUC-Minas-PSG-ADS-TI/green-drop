@@ -1,36 +1,46 @@
 
 # 5. Interface do Sistema
 
-<span style="color:red">Pré-requisitos: <a href="4-Projeto-Solucao.md"> Projeto da Solução</a></span>
-
-_Visão geral da interação do usuário por meio das telas do sistema. Apresente as principais interfaces da plataforma._
-
 ## 5.1. Tela principal do sistema
 
-_Descrição da tela principal do sistema._
+[`Tela principal do sistema`](docs/images/home.jpeg)
 
-[`Tela principal do sistema`](images/)
-
-
-## 5.2. Telas do processo 1
+## 5.2. Telas do processo de reporte
 
 _Descrição da tela relativa à atividade 1._
 
-[`Tela da atividade 1`](images/)
+[`Reporte 1`](docs/images/report1.jpeg)
 
 _Descrição da tela relativa à atividade 2._
 
-[`Tela da atividade 2`](images/)
-
-
-## 5.3. Telas do processo 2
+[`Report 2`](docs/images/report2.jpeg)
 
 _Descrição da tela relativa à atividade 1._
 
-[`Tela da atividade 1`](images/)
+[`Reporte 1`](docs/images/reportCam.jpeg)
 
 _Descrição da tela relativa à atividade 2._
 
-[`Tela da atividade 2`](images/)
+[`Report 2`](docs/images/reportCam1.1.jpeg)
 
+## 5.3. Telas das informacoes do usuario
 
+_Descrição da tela relativa à atividade 1._
+
+[`Tela de login`](docs/images/login.jpeg)
+
+_Descrição da tela relativa à atividade 2._
+
+[`Tela de cadastro`](docs/images/cadastro.jpeg)
+
+_Descrição da tela relativa à atividade 2._
+
+[`Tela de pontos`](docs/images/points.jpeg)
+
+_Descrição da tela relativa à atividade 2._
+
+[`Tela de conquistas`](docs/images/achievementsquests.jpeg)
+
+_Descrição da tela relativa à atividade 2._
+
+[`Tela de sobre`](docs/images/about.jpeg)

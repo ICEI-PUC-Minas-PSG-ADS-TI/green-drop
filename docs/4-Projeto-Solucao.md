@@ -13,32 +13,26 @@
 A seguir, alguns protótipos ilustrativos das principais telas do aplicativo:
 
 **Tela de Login**  
-![Protótipo Login](path/to/login.png)
+![Protótipo Login](docs/images/login.jpeg)
 
 **Mapa Principal**  
-![Protótipo Mapa](path/to/mapa.png)
+![Protótipo Mapa](docs/images/home.jpeg)
 
-**Perfil e Histórico**  
-![Protótipo Perfil](path/to/perfil.png)
+**Reporte**  
+![Protótipo Reporte](docs/images/report2.jpeg)
 
+**Reporte Camera**  
+![Protótipo Reporte](docs/images/reportCam.jpeg)
 
 ---
 
 ## 4.3 Modelagem de Dados
-
-### 4.3.1 Diagrama de Classes
-
-![Diagrama de Classes](path/to/diagrama-classes.png)
-
-> **Figura 4.2** – Representação das classes e seus relacionamentos.
 
 ### 4.3.2 Modelo Entidade-Relacionamento (ER)
 
 #### 4.3.2.1 Modelo Relacional
 
 ![Modelo Relacional](https://github.com/user-attachments/assets/eafa2740-9b32-42b9-ad5a-25c058f241ab)
-
-> **Figura 4.3** – Diagrama relacional contendo tabelas e chaves.
 
 #### 4.3.2.2 Modelo Físico
 
@@ -57,5 +51,3 @@ O script DDL completo está em:
 | **Armazenamento de Imagens** | AWS S3 (ou MinIO on-premise)                                                             | Upload de fotos via serviço de reportes, armazenamento de URL pública/assinada e distribuição via CDN; evita BLOBs no banco                                                                                                                      |
 | **Testes Automatizados**     | JUnit 5; Spring Boot Test; Jest; React Testing Library; Enzyme; Postman/Newman; Cucumber | • Unitários (backend/frontend)<br>• Integração (H2, Docker-PostgreSQL)<br>• Interface (componentes React/React Native)<br>• Contrato/API end-to-end                                                                                              |
 | **CI/CD**                    | GitHub Actions (ou GitLab CI)                                                            | • Pipelines de lint, build (Docker, bundling frontend), testes<br>• Deploy via Docker Compose, scripts em VM ou Kubernetes<br>• Versionamento com Git e branches estruturadas (dev/prod)                                                         |
-| **Monitoramento & Logging**  | Spring Boot Actuator; ELK Stack; Prometheus; Grafana; Zipkin/Jaeger                      | • Logs centralizados (Logstash → Elasticsearch → Kibana)<br>• Métricas e alertas (Prometheus + Grafana)<br>• Tracing distribuído (Zipkin/Jaeger ou IDs de correlação nos logs)                                                                   |
-
