@@ -12,17 +12,37 @@
 
 A seguir, alguns protótipos ilustrativos das principais telas do aplicativo:
 
-**Tela de Login**  
-![Protótipo Login](docs/images/login.jpeg)
+<div align="center">
 
-**Mapa Principal**  
-![Protótipo Mapa](docs/images/home.jpeg)
+  <figure style="display: inline-block; margin: 8px;">
+    <img src="./images/login.jpeg" alt="Protótipo Tela de Login"
+         style="width:200px; height:auto;" />
+    <figcaption><em>Figura 1. Tela de Login</em></figcaption>
+  </figure>
 
-**Reporte**  
-![Protótipo Reporte](docs/images/report2.jpeg)
+  <figure style="display: inline-block; margin: 8px;">
+    <img src="./images/home.jpeg" alt="Protótipo Mapa Principal"
+         style="width:200px; height:auto;" />
+    <figcaption><em>Figura 2. Mapa Principal</em></figcaption>
+  </figure>
 
-**Reporte Camera**  
-![Protótipo Reporte](docs/images/reportCam.jpeg)
+</div>
+
+<div align="center">
+
+  <figure style="display: inline-block; margin: 8px;">
+    <img src="./images/report2.jpeg" alt="Protótipo Reporte Geral"
+         style="width:200px; height:auto;" />
+    <figcaption><em>Figura 3. Reporte (Visão Geral)</em></figcaption>
+  </figure>
+
+  <figure style="display: inline-block; margin: 8px;">
+    <img src="./images/reportCam.jpeg" alt="Protótipo Reporte por Câmera"
+         style="width:200px; height:auto;" />
+    <figcaption><em>Figura 4. Reporte via Câmera</em></figcaption>
+  </figure>
+
+</div>
 
 ---
 
