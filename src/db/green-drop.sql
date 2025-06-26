@@ -7,7 +7,7 @@ CREATE TABLE users (
     photo_url      VARCHAR(255),
     role           VARCHAR(50) NOT NULL,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    firebase_uid   VARCHAR(100) NOT NULL unique,
+    firebase_uid   VARCHAR(100) unique,
 	points         INTEGER DEFAULT 0
 );
 
