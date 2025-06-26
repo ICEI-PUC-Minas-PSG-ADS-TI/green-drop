@@ -43,17 +43,10 @@ public class UserService {
         log.info("[{}create] - iniciando criação de usuário [email={}, phone={}]", tag, dto.email(), dto.phone());
         String firebaseUid = null;
         String photoUrl = null;
+        User saved = null; // Variável para armazenar o usuário salvo
 
         try {
-            log.debug("[{}createAuthUser] - solicitando criação no Firebase [email={}]", tag, dto.email());
-            firebaseUid = createAuthUser(dto);
-            log.debug("[{}createAuthUser] - usuário Firebase criado [uid={}]", tag, firebaseUid);
-
-            log.debug("[{}uploadPhoto] - iniciando upload de foto [email={}]", tag, dto.email());
-            photoUrl = uploadPhoto(photo);
-            String imageId = extractImageId(photoUrl);
-            log.debug("[{}uploadPhoto] - upload concluído [photoUrl={}, imageId={}]", tag, photoUrl, imageId);
-
+            // 1. Salva o usuário NO BANCO LOCAL primeiro (gera o ID)
             User user = new User();
             user.setName(dto.name());
             user.setEmail(dto.email());
@@ -61,17 +54,39 @@ public class UserService {
             user.setPhone(dto.phone());
             user.setRole("USER");
             user.setCreatedAt(LocalDateTime.now());
-            user.setPhotoUrl(photoUrl);
-            user.setFirebaseUid(firebaseUid);
             user.setPoints(0);
 
-            log.debug("[{}create] - salvando usuário no banco [email={}, uid={}]", tag, dto.email(), firebaseUid);
-            User saved = userRepository.save(user);
+            saved = userRepository.save(user); // Persiste e gera o ID
+            log.debug("[{}create] - usuário salvo localmente [id={}]", tag, saved.getId());
+
+            // 2. Cria usuário no FIREBASE passando o ID local
+            log.debug("[{}createAuthUser] - solicitando criação no Firebase [email={}, id={}]", tag, dto.email(), saved.getId());
+            firebaseUid = createAuthUser(dto, saved.getId()); // Passa o ID aqui!
+            log.debug("[{}createAuthUser] - usuário Firebase criado [uid={}]", tag, firebaseUid);
+
+            // 3. Upload da foto
+            log.debug("[{}uploadPhoto] - iniciando upload de foto [email={}]", tag, dto.email());
+            photoUrl = uploadPhoto(photo);
+            String imageId = extractImageId(photoUrl);
+            log.debug("[{}uploadPhoto] - upload concluído [photoUrl={}, imageId={}]", tag, photoUrl, imageId);
+
+            // 4. Atualiza o usuário local com Firebase UID e PhotoURL
+            saved.setFirebaseUid(firebaseUid);
+            saved.setPhotoUrl(photoUrl);
+            userRepository.save(saved); // Atualiza os novos campos
+
             log.info("[{}create] - usuário criado com sucesso [id={}, uid={}]", tag, saved.getId(), firebaseUid);
             return URI.create("/v1/users/" + saved.getId());
 
         } catch (Exception ex) {
             log.error("[{}create] - erro durante criação de usuário, iniciando rollback [firebaseUid={}, photoUrl={}]", tag, firebaseUid, photoUrl, ex);
+
+            // Rollback: Remove usuário local se foi salvo (transação fará rollback, mas garantimos cleanup externo)
+            if (saved != null && saved.getId() != null) {
+                userRepository.deleteById(saved.getId()); // Remove do banco local
+                log.debug("[{}create] - cleanup usuário local removido [id={}]", tag, saved.getId());
+            }
+
             if (firebaseUid != null) {
                 try {
                     deleteAuthUser(firebaseUid);
@@ -90,6 +105,20 @@ public class UserService {
                 }
             }
             throw ex;
+        }
+    }
+
+    // Método atualizado para receber o ID
+    private String createAuthUser(UserRequestDTO dto, Long userId) {
+        log.debug("[{}createAuthUser] - criando usuário no Firebase [email={}, idLocal={}]", tag, dto.email(), userId);
+        try {
+            // AuthClient deve ser atualizado para receber o userId
+            String uid = authClient.createFirebaseUser(dto, userId);
+            log.debug("[{}createAuthUser] - Firebase retornou uid={}]", tag, uid);
+            return uid;
+        } catch (RestClientException e) {
+            log.error("[{}createAuthUser] - erro ao criar usuário no Firebase [email={}]", tag, dto.email(), e);
+            throw new ApiException("FALHA AO CRIAR USUÁRIO NO FIREBASE ::: ", HttpStatus.INTERNAL_SERVER_ERROR, e);
         }
     }
 
@@ -266,18 +295,6 @@ public class UserService {
         } catch (IOException | RestClientException e) {
             log.error("[{}uploadPhoto] - erro ao enviar foto", tag, e);
             throw new PhotoUploadException("FALHA AO ENVIAR FOTO DO USUÁRIO ::: ", e);
-        }
-    }
-
-    private String createAuthUser(UserRequestDTO dto) {
-        log.debug("[{}createAuthUser] - criando usuário no Firebase [email={}]", tag, dto.email());
-        try {
-            String uid = authClient.createFirebaseUser(dto);
-            log.debug("[{}createAuthUser] - Firebase retornou uid={}]", tag, uid);
-            return uid;
-        } catch (RestClientException e) {
-            log.error("[{}createAuthUser] - erro ao criar usuário no Firebase [email={}]", tag, dto.email(), e);
-            throw new ApiException("FALHA AO CRIAR USUÁRIO NO FIREBASE ::: ", HttpStatus.INTERNAL_SERVER_ERROR, e);
         }
     }
 

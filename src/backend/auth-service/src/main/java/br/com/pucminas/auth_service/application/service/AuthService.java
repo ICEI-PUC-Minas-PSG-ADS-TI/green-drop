@@ -126,7 +126,7 @@ public class AuthService {
         }
     }
 
-    public String createFirebaseUser(UserRequestDTO userRequestDTO) throws FirebaseAuthException {
+    public String createFirebaseUser(UserRequestDTO userRequestDTO, Long id) throws FirebaseAuthException {
         log.info("[{}create] - criando novo usuário Firebase [email={}, name={}]", tag, userRequestDTO.email(), userRequestDTO.name());
         UserRecord user = FirebaseAuth.getInstance().createUser(new UserRecord.CreateRequest()
                 .setDisplayName(userRequestDTO.name())
@@ -134,14 +134,15 @@ public class AuthService {
                 .setPassword(userRequestDTO.password())
                 .setPhoneNumber(userRequestDTO.phone()));
         log.info("[{}create] - usuário Firebase criado [uid={}]", tag, user.getUid());
-        setUserRole(user.getUid());
+        setUserRole(user.getUid(), id);
         return user.getUid();
     }
 
-    private void setUserRole(String uid) {
+    private void setUserRole(String uid, Long id) {
         log.info("[{}setUserRole] - definindo papel USER [uid={}]", tag, uid);
         try {
             FirebaseAuth.getInstance().setCustomUserClaims(uid, Map.of("role", "USER"));
+            FirebaseAuth.getInstance().setCustomUserClaims(uid, Map.of("id", id));
             log.info("[{}setUserRole] - papel definido com sucesso [uid={}]", tag, uid);
         } catch (FirebaseAuthException e) {
             log.error("[{}setUserRole] - erro ao definir papel [uid={}]", tag, uid, e);

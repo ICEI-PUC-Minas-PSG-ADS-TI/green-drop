@@ -1,6 +1,7 @@
 package br.com.pucminas.report_service.application.client;
 
 import br.com.pucminas.report_service.application.dto.GamificationEventDTO;
+import br.com.pucminas.report_service.application.dto.ReportModerationEventDTO;
 import br.com.pucminas.report_service.config.FeignJsonConfig;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -17,5 +18,5 @@ public interface GamificationClient {
     void processReportCreated(@RequestBody GamificationEventDTO event);
 
     @PostMapping("/reports/moderated")
-    void processReportModerated(@RequestBody GamificationEventDTO event);
+    void processReportModerated(@RequestBody ReportModerationEventDTO event);
 }

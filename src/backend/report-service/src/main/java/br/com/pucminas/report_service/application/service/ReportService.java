@@ -3,6 +3,7 @@ package br.com.pucminas.report_service.application.service;
 import br.com.pucminas.report_service.application.client.GamificationClient;
 import br.com.pucminas.report_service.application.client.ImageClient;
 import br.com.pucminas.report_service.application.dto.GamificationEventDTO;
+import br.com.pucminas.report_service.application.dto.ReportModerationEventDTO;
 import br.com.pucminas.report_service.application.dto.ReportRequestDTO;
 import br.com.pucminas.report_service.domain.exception.ApiException;
 import br.com.pucminas.report_service.domain.exception.PhotoUploadException;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -85,6 +87,7 @@ public class ReportService {
                 });
 
         report.setStatus(status);
+        notifyReportUpdate(report, Objects.equals(status, "VALIDATE"));
         repository.save(report);
         log.info("updateStatus - Status atualizado com sucesso [id={}]", id);
     }
@@ -125,6 +128,16 @@ public class ReportService {
             log.debug("[{}gamification] reportCreated enviado [reportId={}, userId={}]", tag, dto.getId(), dto.getUserId());
         } catch (Exception ex) {
             log.warn("[{}gamification] Falha ao notificar criação de report", tag, ex);
+        }
+    }
+
+    private void notifyReportUpdate(Report dto, Boolean status) {
+        try {
+            var event = new ReportModerationEventDTO(dto.getUserId(), dto.getId(), status);
+            gamificationClient.processReportModerated(event);
+            log.debug("[{}gamification] reportUpdate enviado [reportId={}, userId={}]", tag, dto.getId(), dto.getUserId());
+        } catch (Exception ex) {
+            log.warn("[{}gamification] Falha ao notificar atualização de report", tag, ex);
         }
     }
 
