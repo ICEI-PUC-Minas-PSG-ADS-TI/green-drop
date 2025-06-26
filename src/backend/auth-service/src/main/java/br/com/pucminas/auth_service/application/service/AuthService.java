@@ -17,6 +17,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -139,17 +140,20 @@ public class AuthService {
     }
 
     private void setUserRole(String uid, Long id) {
-        log.info("[{}setUserRole] - definindo papel USER [uid={}]", tag, uid);
+        log.info("[{} setUserRole] definindo papel e id [uid={}]", tag, uid);
         try {
-            FirebaseAuth.getInstance().setCustomUserClaims(uid, Map.of("role", "USER"));
-            FirebaseAuth.getInstance().setCustomUserClaims(uid, Map.of("id", id));
-            log.info("[{}setUserRole] - papel definido com sucesso [uid={}]", tag, uid);
+            UserRecord user = FirebaseAuth.getInstance().getUser(uid);
+            Map<String, Object> currentClaims = new HashMap<>(user.getCustomClaims());
+            currentClaims.put("role", "USER");
+            currentClaims.put("id", id);
+            FirebaseAuth.getInstance().setCustomUserClaims(uid, currentClaims);
+            log.info("[{} setUserRole] papel e id definidos com sucesso [uid={}]", tag, uid);
         } catch (FirebaseAuthException e) {
-            log.error("[{}setUserRole] - erro ao definir papel [uid={}]", tag, uid, e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "ERRO AO DEFINIR PAPEL DO USUÁRIO.", e);
+            log.error("[{} setUserRole] erro ao definir claims [uid={}]", tag, uid, e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERRO AO DEFINIR PAPEL DO USUÁRIO.", e);
         }
     }
+
 
     private HttpHeaders defaultHeaders() {
         log.debug("[{}defaultHeaders] - criando headers padrão", tag);
