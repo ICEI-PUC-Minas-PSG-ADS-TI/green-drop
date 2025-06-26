@@ -1,0 +1,18 @@
+// ---- Helpers ----
+const calculatePoints = (category, level) => {
+  const table = {
+    'espacos': [10, 20, 30, 50, 80],
+    'meio-ambiente': [15, 25, 35, 55, 85],
+    'infra': [20, 30, 40, 60, 90],
+    'servicos': [25, 35, 45, 65, 95],
+    'seguranca': [30, 40, 50, 70, 100]
+  };
+  const categoryPoints = table[category] || table['infra'];
+  const levelIndex = level.id - 1;
+  const pts = categoryPoints[levelIndex] || 0;
+  //const pts = (table[category] || table['infra'])[level.id - 1] || 0;
+  return { initial: Math.floor(pts / 2), total: pts };
+};
+
+
+Add to handle submit, api call for points

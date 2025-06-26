@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.4.5</version>
+		<relativePath/>
 	</parent>
-	<groupId>br.com.puc</groupId>
+	<groupId>br.com.pucminas</groupId>
 	<artifactId>report-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>report-service</name>
@@ -66,8 +66,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.8.0</version>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>

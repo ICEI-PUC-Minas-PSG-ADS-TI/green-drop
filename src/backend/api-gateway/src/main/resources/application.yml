@@ -3,6 +3,22 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - "http://localhost:5173"
+              - "https://0a83-2804-d45-997c-c600-bc38-f29-bec9-47ef.ngrok-free.app"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - HEAD
+            allowed-headers: "*"
+            allow-credentials: true
+            max-age: 14400
       discovery:
         locator:
           enabled: true
@@ -16,10 +32,18 @@ spring:
           uri: lb://image-service
           predicates:
             - Path=/v1/images/**
-        - id: image-service
+        - id: auth-service
           uri: lb://auth-service
           predicates:
             - Path=/v1/auth/**
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/v1/reports/**
+        - id: gamification-service
+          uri: lb://gamification-service
+          predicates:
+            - Path=/v1/gamification/**
 eureka:
   client:
     register-with-eureka: true

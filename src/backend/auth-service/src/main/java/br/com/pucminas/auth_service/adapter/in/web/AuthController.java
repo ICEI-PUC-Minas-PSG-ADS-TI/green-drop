@@ -1,6 +1,6 @@
 package br.com.pucminas.auth_service.adapter.in.web;
 
-import br.com.pucminas.auth_service.adapter.docs.AuthControllerDoc;
+import br.com.pucminas.auth_service.adapter.doc.AuthControllerDoc;
 import br.com.pucminas.auth_service.application.dto.*;
 import br.com.pucminas.auth_service.application.service.AuthService;
 
@@ -23,8 +23,8 @@ public class AuthController implements AuthControllerDoc {
     }
 
     @PostMapping
-    public ResponseEntity<String> createFirebaseUser(UserRequestDTO userRequest) throws FirebaseAuthException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createFirebaseUser(userRequest));
+    public ResponseEntity<String> createFirebaseUser(UserRequestDTO userRequest, @RequestParam Long id) throws FirebaseAuthException {
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createFirebaseUser(userRequest, id));
     }
 
     @DeleteMapping

@@ -1,0 +1,837 @@
+ ● ContributionNavigator › snapshot de ContributionNavigator
+
+    Couldn't register the navigator. Have you wrapped your app with 'NavigationContainer'?
+
+    This can also happen if there are multiple copies of '@react-navigation' packages installed.      
+
+      26 |   });
+      27 |   it('snapshot de ContributionNavigator', () => {
+    > 28 |     const tree = render(<ContributionNavigator />).toJSON();
+         |                        ^
+      29 |     expect(tree).toMatchSnapshot();
+      30 |   });
+      31 | });
+
+      at useRegisterNavigator (node_modules/@react-navigation/core/src/useRegisterNavigator.tsx:15:11)
+      at useNavigationBuilder (node_modules/@react-navigation/core/src/useNavigationBuilder.tsx:300:44)
+      at NativeStackNavigator (node_modules/@react-navigation/native-stack/src/navigators/createNativeStackNavigator.tsx:37:25)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/navigation/ContributionNavigator.test.jsx:28:24)
+
+ FAIL  __tests__/components/CurrentLocation.test.jsx (8.53 s)
+  ● Console
+
+    console.warn
+      The global process.env.EXPO_OS is not defined. This should be inlined by babel-preset-expo during transformation.
+
+       5 | import { renderHook, act } from '@testing-library/react-hooks';
+       6 | jest.mock('expo-location');
+    >  7 | import * as Location from 'expo-location';
+         | ^
+       8 | import { Alert } from 'react-native';
+       9 | import useCurrentLocation from '@/components/useCurrentLocation';
+      10 |
+
+      at Object.warn (node_modules/expo-modules-core/src/Platform.ts:15:11)
+      at Object.require (node_modules/expo-modules-core/src/sweet/setUpErrorManager.fx.ts:2:1)        
+      at Object.require (node_modules/expo-modules-core/src/index.ts:1:1)
+      at requireActual (node_modules/jest-expo/src/preset/setup.js:222:34)
+      at Object.require (node_modules/expo-location/src/index.ts:1:1)
+      at Object.require (__tests__/components/CurrentLocation.test.jsx:7:1)
+
+  ● useCurrentLocation › deve iniciar com estado de loading
+                                                                                                      
+    Timed out in waitForNextUpdate after 1000ms.                                                      
+                                                                                                      
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+                                                                                                      
+  ● useCurrentLocation › deve lidar com permissão concedida                                           
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve lidar com permissão negada
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve atualizar localização quando watchPosition é true
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve lidar com erro de localização
+
+    GPS desligado
+
+      151 |     Location.requestForegroundPermissionsAsync.mockResolvedValue({ status: 'granted' });  
+      152 |     // 5b) But getCurrentPositionAsync immediately rejects
+    > 153 |     Location.getCurrentPositionAsync.mockRejectedValue(new Error('GPS desligado'));       
+          |                                                        ^
+      154 |
+      155 |     const { result, waitForNextUpdate } = renderHook(() => useCurrentLocation());
+      156 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:153:56)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve lidar com erro de localização
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve cancelar watchPosition no unmount
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+ PASS  __tests__/navigation/AppNavigator.test.jsx (33.303 s)
+  ● Console
+
+    console.warn
+      The global process.env.EXPO_OS is not defined. This should be inlined by babel-preset-expo during transformation.
+
+      1 | import { useState, useEffect, useCallback, useRef } from 'react';
+    > 2 | import * as Location from 'expo-location';
+        | ^
+      3 | import { Alert, Platform } from 'react-native';
+      4 |
+      5 | const LOCATION_PERMISSION_MESSAGE = 'Precisamos de acesso à sua localização para fornecer funcionalidades baseadas em GPS.';
+
+      at Object.warn (node_modules/expo-modules-core/src/Platform.ts:15:11)
+      at Object.require (node_modules/expo-modules-core/src/sweet/setUpErrorManager.fx.ts:2:1)        
+      at Object.require (node_modules/expo-modules-core/src/index.ts:1:1)
+      at requireActual (node_modules/jest-expo/src/preset/setup.js:222:34)
+      at Object.require (node_modules/expo-location/src/index.ts:1:1)
+      at Object.require (components/useCurrentLocation.js:2:1)
+      at Object.require (pages/map/index.jsx:12:1)
+      at Object.require (navigation/AppNavigator.js:6:1)
+      at Object.require (__tests__/navigation/AppNavigator.test.jsx:10:1)
+
+    console.log
+      Theme is: light
+
+      at log (contexts/ThemeContext.js:16:13)
+
+
+Summary of all failing tests
+ FAIL  __tests__/services/apiML.test.js (6.749 s)
+  ● apiML › deve existir
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+       6 | describe('apiML', () => {
+       7 |   it('deve existir', () => {
+    >  8 |     expect(api).toBeDefined();
+         |                 ^
+       9 |   });
+      10 |
+      11 |   it('usa a baseURL correta', () => {
+
+      at Object.toBeDefined (__tests__/services/apiML.test.js:8:17)
+
+  ● apiML › usa a baseURL correta
+
+    TypeError: Cannot read properties of undefined (reading 'defaults')
+
+      10 |
+      11 |   it('usa a baseURL correta', () => {
+    > 12 |     expect(api.defaults.baseURL).toBe('https://a8fb-186-248-79-98.ngrok-free.app/v1');     
+         |                ^
+      13 |   });
+      14 |
+      15 |   it('faz uma chamada GET', async () => {
+
+      at Object.defaults (__tests__/services/apiML.test.js:12:16)
+
+  ● apiML › faz uma chamada GET
+
+    TypeError: Cannot set properties of undefined (setting 'get')
+
+      15 |   it('faz uma chamada GET', async () => {
+      16 |     // Simula método get
+    > 17 |     api.get = jest.fn().mockResolvedValue({ data: 'ok' });
+         |            ^
+      18 |     const res = await api.get('/test');
+      19 |     expect(res.data).toBe('ok');
+      20 |   });
+
+      at Object.<anonymous> (__tests__/services/apiML.test.js:17:12)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+ FAIL  __tests__/services/location.test.js (6.9 s)
+  ● LocationService › busca locais próximos com sucesso
+
+    Não foi possível buscar locais próximos
+
+      16 |       // eslint-disable-next-line no-console, no-undef
+      17 |       console.error('Erro na API de localização:', error);
+    > 18 |       throw new Error('Não foi possível buscar locais próximos');
+         |             ^
+      19 |     }
+      20 |   }
+      21 | };
+
+      at Object.<anonymous> (api/location.js:18:13)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as getNearbyLocations] (api/location.js:4:21)
+      at Object.getNearbyLocations (__tests__/services/location.test.js:19:42)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+ FAIL  __tests__/services/UsuarioService.test.js (6.745 s)
+  ● UsuarioService › login › login retorna null em erro
+
+    Erro ao logar: fail
+
+       8 |       return response.data;
+       9 |     } catch (error) {
+    > 10 |       throw new Error("Erro ao logar: " + error.message);
+         |             ^
+      11 |     }
+      12 |   }
+      13 |   
+
+      at Object.<anonymous> (api/Usuario.js:10:13)
+          at Generator.throw (<anonymous>)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _throw (node_modules/@babel/runtime/helpers/asyncToGenerator.js:20:9)
+
+  ● UsuarioService › cadastro › cadastro retorna null em erro
+
+    Erro ao cadastrar: fail
+
+      25 |       return response.data;
+      26 |     } catch (error) {
+    > 27 |       throw new Error("Erro ao cadastrar: " + error.message);
+         |             ^
+      28 |     }
+      29 |   }  
+
+      at Object.<anonymous> (api/Usuario.js:27:13)
+          at Generator.throw (<anonymous>)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _throw (node_modules/@babel/runtime/helpers/asyncToGenerator.js:20:9)
+
+ FAIL  __tests__/pages/ContribuirLayout.test.jsx (29.079 s)
+  ● <ContribuirLayout /> › renderiza corretamente
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+       8 |
+       9 | export default function BottomBar() {
+    > 10 |     const navigation = useNavigation();
+         |                                     ^
+      11 |     const { colorScheme } = useTheme();
+      12 |     const styles = getStyles(colorScheme);
+      13 |     return (
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at BottomBar (components/BottomBar/index.jsx:10:37)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/pages/ContribuirLayout.test.jsx:8:7)
+
+  ● <ContribuirLayout /> › snapshot de ContribuirLayout
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+       8 |
+       9 | export default function BottomBar() {
+    > 10 |     const navigation = useNavigation();
+         |                                     ^
+      11 |     const { colorScheme } = useTheme();
+      12 |     const styles = getStyles(colorScheme);
+      13 |     return (
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at BottomBar (components/BottomBar/index.jsx:10:37)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at performWorkUntilDeadline (node_modules/scheduler/cjs/scheduler.native.development.js:44:48)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+ FAIL  __tests__/integration/appIntegration.test.jsx
+  ● Fluxo completo de Login › usuário faz login e vê perfil
+
+    Unable to find an element with placeholder: Usuário
+
+    <RNCSafeAreaProvider />
+
+      20 |       </SafeAreaProvider>
+      21 |     );
+    > 22 |     fireEvent.changeText(getByPlaceholderText('Usuário'), 'summer');
+         |                          ^
+      23 |     fireEvent.changeText(getByPlaceholderText('Senha'), '1234');
+      24 |     fireEvent.press(getByText('Entrar'));
+      25 |     // TODO: validar navegação
+
+      at Object.getByPlaceholderText (__tests__/integration/appIntegration.test.jsx:22:26)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+ FAIL  __tests__/pages/map.index.test.jsx (40.08 s)
+  ● <MapScreen /> › combina com snapshot
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function       
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+  ● <MapScreen /> › deve lidar com situação de sucesso
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+  ● <MapScreen /> › exibe loading durante busca de locais
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function       
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+  ● <MapScreen /> › mostra erro de localização
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function       
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+  ● <MapScreen /> › atualiza região ao buscar novos locais
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function       
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+  ● <MapScreen /> › mostra detalhes do marcador ao clicar
+
+    TypeError: _location.LocationService.getNearbyLocations.mockResolvedValue is not a function       
+
+      49 |
+      50 |     // And pretend the service returns two locations
+    > 51 |     LocationService.getNearbyLocations.mockResolvedValue(fakeNearbyLocations);
+         |                                        ^
+      52 |   });
+      53 |
+      54 |   it('combina com snapshot', () => {
+
+      at Object.mockResolvedValue (__tests__/pages/map.index.test.jsx:51:40)
+
+ FAIL  __tests__/pages/Final.test.jsx (32.806 s)
+  ● <Final /> › renderiza corretamente
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+      90 |   const styles = getStyles(colorScheme);
+      91 |   const isDarkMode = colorScheme === 'dark';
+    > 92 |   const navigation = useNavigation();
+         |                                   ^
+      93 |   const route = useRoute();
+      94 |
+      95 |   const photoData = route.params?.photoData;
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at FinalScreen (pages/contribuir/final/index.jsx:92:35)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/pages/Final.test.jsx:8:7)
+
+  ● <Final /> › snapshot de Final
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+      90 |   const styles = getStyles(colorScheme);
+      91 |   const isDarkMode = colorScheme === 'dark';
+    > 92 |   const navigation = useNavigation();
+         |                                   ^
+      93 |   const route = useRoute();
+      94 |
+      95 |   const photoData = route.params?.photoData;
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at FinalScreen (pages/contribuir/final/index.jsx:92:35)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at performWorkUntilDeadline (node_modules/scheduler/cjs/scheduler.native.development.js:44:48)  
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+ FAIL  __tests__/pages/Explicacao.test.jsx (33.295 s)
+  ● <Explicacao /> › renderiza corretamente
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+      10 |   const { colorScheme } = useTheme();
+      11 |   const styles = getStyles(colorScheme);
+    > 12 |   const navigation = useNavigation();
+         |                                   ^
+      13 |   
+      14 |   const handleNextStep = () => {
+      15 |       navigation.navigate('Camera');
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at InfoScreen (pages\contribuir\explicação\index.jsx:12:35)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/pages/Explicacao.test.jsx:8:7)
+
+  ● <Explicacao /> › snapshot de Explicacao
+
+    Couldn't find a navigation object. Is your component inside NavigationContainer?
+
+      10 |   const { colorScheme } = useTheme();
+      11 |   const styles = getStyles(colorScheme);
+    > 12 |   const navigation = useNavigation();
+         |                                   ^
+      13 |   
+      14 |   const handleNextStep = () => {
+      15 |       navigation.navigate('Camera');
+
+      at useNavigation (node_modules/@react-navigation/core/src/useNavigation.tsx:22:11)
+      at InfoScreen (pages\contribuir\explicação\index.jsx:12:35)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at performWorkUntilDeadline (node_modules/scheduler/cjs/scheduler.native.development.js:44:48)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+ FAIL  __tests__/contexts/UserContext.test.js
+  ● UserContext › provider rende componentes filhos
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+       6 | describe('UserContext', () => {
+       7 |   it('provider rende componentes filhos', () => {
+    >  8 |     const { getByText } = render(
+         |                                 ^
+       9 |       <UserContextProvider>
+      10 |         <UserContext.Consumer>
+      11 |           {value => <Text>{JSON.stringify(value)}</Text>}
+
+      at createFiberFromTypeAndProps (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11889:28)
+      at createFiberFromElement (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11903:14)
+      at reconcileChildFibersImpl (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3203:31)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3380:33
+      at reconcileChildren (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5362:13)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7138:16)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/contexts/UserContext.test.js:8:33)
+
+ FAIL  __tests__/components/cameraComponent.test.jsx
+  ● <CameraComponent /> › should render the camera preview when permission is granted
+
+    TypeError: (0 , _expoCamera.useCameraPermissions) is not a function
+
+      17 | // eslint-disable-next-line react/prop-types
+      18 | export default function CameraComponent({ onPhotoTaken }) {
+    > 19 |     const [permission, requestPermission] = useCameraPermissions();
+         |                                                                 ^
+      20 |     const [facing, setFacing] = useState('back');
+      21 |     const [photo, setPhoto] = useState(null);
+      22 |     const [flash, setFlash] = useState('off');
+
+      at CameraComponent (components/cameraComponent/index.jsx:19:65)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/components/cameraComponent.test.jsx:50:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● <CameraComponent /> › should show an error message when location is not available
+
+    TypeError: (0 , _expoCamera.useCameraPermissions) is not a function
+
+      17 | // eslint-disable-next-line react/prop-types
+      18 | export default function CameraComponent({ onPhotoTaken }) {
+    > 19 |     const [permission, requestPermission] = useCameraPermissions();
+         |                                                                 ^
+      20 |     const [facing, setFacing] = useState('back');
+      21 |     const [photo, setPhoto] = useState(null);
+      22 |     const [flash, setFlash] = useState('off');
+
+      at CameraComponent (components/cameraComponent/index.jsx:19:65)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/components/cameraComponent.test.jsx:70:11)
+
+  ● <CameraComponent /> › should take a picture when the shutter button is pressed
+
+    TypeError: (0 , _expoCamera.useCameraPermissions) is not a function
+
+      17 | // eslint-disable-next-line react/prop-types
+      18 | export default function CameraComponent({ onPhotoTaken }) {
+    > 19 |     const [permission, requestPermission] = useCameraPermissions();
+         |                                                                 ^
+      20 |     const [facing, setFacing] = useState('back');
+      21 |     const [photo, setPhoto] = useState(null);
+      22 |     const [flash, setFlash] = useState('off');
+
+      at CameraComponent (components/cameraComponent/index.jsx:19:65)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/components/cameraComponent.test.jsx:79:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+ FAIL  __tests__/contexts/ThemeContext.test.js
+  ● ThemeContext › provider rende componentes filhos
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+       6 | describe('ThemeContext', () => {
+       7 | it('provider rende componentes filhos', () => {
+    >  8 | const { getByText } = render(
+         |                             ^
+       9 | <ThemeContextProvider>
+      10 | <ThemeContext.Consumer>
+      11 | {value => <Text>{JSON.stringify(value)}</Text>}
+
+      at createFiberFromTypeAndProps (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11889:28)
+      at createFiberFromElement (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11903:14)
+      at reconcileChildFibersImpl (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3203:31)
+      at node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3380:33
+      at reconcileChildren (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5362:13)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7138:16)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/contexts/ThemeContext.test.js:8:29)
+
+ FAIL  __tests__/navigation/ContributionNavigator.test.jsx (31.719 s)
+  ● ContributionNavigator › renderiza sem erros
+
+    Couldn't register the navigator. Have you wrapped your app with 'NavigationContainer'?
+
+    This can also happen if there are multiple copies of '@react-navigation' packages installed.
+
+      20 |
+      21 |   it('renderiza sem erros', async () => {
+    > 22 |     const tree = render(<ContributionNavigator />);
+         |                        ^
+      23 |     expect(tree).toBeTruthy();
+      24 |     // Or you could verify that a certain screen label is present:
+      25 |     // await waitFor(() => expect(screen.getByText('Algum título na tela inicial')).toBeTruthy());
+
+      at useRegisterNavigator (node_modules/@react-navigation/core/src/useRegisterNavigator.tsx:15:11)
+      at useNavigationBuilder (node_modules/@react-navigation/core/src/useNavigationBuilder.tsx:300:44)
+      at NativeStackNavigator (node_modules/@react-navigation/native-stack/src/navigators/createNativeStackNavigator.tsx:37:25)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/navigation/ContributionNavigator.test.jsx:22:24)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● ContributionNavigator › snapshot de ContributionNavigator
+
+    Couldn't register the navigator. Have you wrapped your app with 'NavigationContainer'?
+
+    This can also happen if there are multiple copies of '@react-navigation' packages installed.      
+
+      26 |   });
+      27 |   it('snapshot de ContributionNavigator', () => {
+    > 28 |     const tree = render(<ContributionNavigator />).toJSON();
+         |                        ^
+      29 |     expect(tree).toMatchSnapshot();
+      30 |   });
+      31 | });
+
+      at useRegisterNavigator (node_modules/@react-navigation/core/src/useRegisterNavigator.tsx:15:11)
+      at useNavigationBuilder (node_modules/@react-navigation/core/src/useNavigationBuilder.tsx:300:44)
+      at NativeStackNavigator (node_modules/@react-navigation/native-stack/src/navigators/createNativeStackNavigator.tsx:37:25)
+      at Object.react-stack-bottom-frame (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12679:20)
+      at renderWithHooks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3622:25)
+      at updateFunctionComponent (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:5635:19)
+      at beginWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7086:18)  
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:540:16)
+      at performUnitOfWork (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10917:22)
+      at workLoopSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10763:41)
+      at renderRootSync (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10744:11)
+      at performWorkOnRoot (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10299:39)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1879:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:862:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:1151:10)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:31:25)
+      at renderWithAct (node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at renderInternal (node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at Object.<anonymous> (__tests__/navigation/ContributionNavigator.test.jsx:28:24)
+
+ FAIL  __tests__/components/CurrentLocation.test.jsx (8.53 s)
+  ● useCurrentLocation › deve iniciar com estado de loading
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve lidar com permissão concedida
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve lidar com permissão negada
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve atualizar localização quando watchPosition é true
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve lidar com erro de localização
+
+    GPS desligado
+
+      151 |     Location.requestForegroundPermissionsAsync.mockResolvedValue({ status: 'granted' });
+      152 |     // 5b) But getCurrentPositionAsync immediately rejects
+    > 153 |     Location.getCurrentPositionAsync.mockRejectedValue(new Error('GPS desligado'));       
+          |                                                        ^
+      154 |
+      155 |     const { result, waitForNextUpdate } = renderHook(() => useCurrentLocation());
+      156 |
+
+      at Object.<anonymous> (__tests__/components/CurrentLocation.test.jsx:153:56)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● useCurrentLocation › deve lidar com erro de localização
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+  ● useCurrentLocation › deve cancelar watchPosition no unmount
+
+    Timed out in waitForNextUpdate after 1000ms.
+
+      at waitForNextUpdate (node_modules/@testing-library/react-hooks/lib/core/asyncUtils.js:96:13)   
+
+
+Test Suites: 13 failed, 8 passed, 21 total
+Tests:       32 failed, 25 passed, 57 total
+Snapshots:   9 passed, 9 total
+Time:        52.708 s
