@@ -17,7 +17,7 @@ class ReporteService {
       name: image.uri.split('/').pop(),
       type: image.type || 'image/jpeg',
     });
-    form.append('report', {
+    form.append('report', JSON.stringify({
       userId: data.userId,
       description: data.description,
       createdAt: data.createdAt,
@@ -27,7 +27,7 @@ class ReporteService {
       problemType: data.problemType,
       relevance: data.relevance,
       status: data.status,
-    })
+    }));
     console.log(form);
     const response = await api.post('/reports', form, {
       headers: { 'Content-Type': 'multipart/form-data' },

@@ -33,4 +33,16 @@ config.resolver.sourceExts = [
   'json'
 ];
 
+config.server = {
+  enhanceMiddleware: (middleware) => {
+    return (req, res, next) => {
+      // Bypass para problemas de CORS durante desenvolvimento
+      if (req.url.startsWith('/v1/')) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+      }
+      return middleware(req, res, next);
+    };
+  }
+};
+
 module.exports = config;

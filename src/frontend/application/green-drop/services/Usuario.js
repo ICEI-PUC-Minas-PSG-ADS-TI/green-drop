@@ -1,7 +1,6 @@
 /* eslint-disable no-console*/
-/* global console, FormData*/
+/* global console, FormData, fetch*/
 import { decodeJWT } from '../utils/jwt';
-import RNFS from 'react-native-fs';
 import api from './apiML';
 
 class UsuarioService {
@@ -21,7 +20,7 @@ class UsuarioService {
 
     const decoded = decodeJWT(token);
     console.log("Decoded JWT payload:", decoded);
-    this.id = decoded?.sub || decoded?.user_id;
+    this.id = decoded?.id;
     if (!this.id) {
       console.warn("Nenhum UID (sub/user_id) encontrado no token!");
     }
@@ -35,8 +34,6 @@ class UsuarioService {
 
   async login({ email, senha }) {
     try {
-      console.log(email)
-      console.log(senha)
       const response = await api.post('/auth/login', { email, password: senha });
       if (response.data.token) {
         this.setToken(response.data.token);
@@ -48,47 +45,56 @@ class UsuarioService {
     }
   }
 
-
-async cadastro({ nome, email, senha, telefone, imagem }) {
-  try {
-    const form = new FormData();
-
-    // 1. Dados do usuário (JSON)
-    form.append('user', JSON.stringify({ 
-      name: nome, 
-      email, 
-      phone: telefone, 
-      password: senha 
-    }));
-
-    // 2. Processamento da imagem (CORREÇÃO)
-    if (imagem) {
-      const fileContent = await RNFS.readFile(imagem.uri, 'base64');
-      form.append('photo', {
-        uri: `data:${imagem.type || 'image/jpeg'};base64,${fileContent}`,
-        name: imagem.fileName || 'photo.jpg',
-        type: imagem.type || 'image/jpeg',
-      });
+  async logout() {
+    try {
+      this.clearToken()
+      const response = await api.post('/auth/logout');
+      return;
+    } catch (error) {
+      console.error("Erro ao deslogar:", error.response?.data || error.message);
+      throw error;
     }
-
-    // 3. Envio com headers
-    const response = await api.post('/users', form, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    
-    return response.data;
-  } catch (error) {
-    console.error(
-      'Erro ao cadastrar usuário:',
-      error.response
-        ? `${error.response.status} - ${JSON.stringify(error.response.data)}`
-        : error.message
-    );
-    throw error;
   }
-}
+
+  async cadastro({ nome, email, senha, telefone, imagem }) {
+    try {
+      const form = new FormData();
+
+      // Campo user como string JSON
+      form.append('user', JSON.stringify({
+        name: nome,
+        email,
+        phone: telefone,
+        password: senha,
+      }));
+
+      // Tratamento especial para imagens
+      if (imagem) {
+        // A propriedade 'type' do objeto File já contém o MIME type correto (ex: 'image/jpeg').
+        // O terceiro argumento do append é opcional e serve para especificar o nome do arquivo no servidor.
+        // Não precisamos de um objeto de configuração aqui.
+        form.append('image', imagem, imagem.name);
+      }
+
+      console.log('Enviando formulário:', JSON.stringify(form, null, 2));
+
+      const response = await api.post('/users', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      return response.data;
+    } catch (error) {
+      console.error('Erro detalhado:', {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+        config: error.config
+      });
+      throw error;
+    }
+  }
 
 
   async getProfile() {
@@ -98,9 +104,25 @@ async cadastro({ nome, email, senha, telefone, imagem }) {
     }
     try {
       const response = await api.get(`/users/${this.id}`);
+      console.log(response)
       return response.data;
     } catch (error) {
       console.error("Erro ao obter perfil:", error.response?.data || error.message);
+      return null;
+    }
+  }
+  async getHistorico() {
+    if (!this.id) {
+      console.warn("Usuário não logado");
+      return null;
+    }
+    try {
+      const response = await api.get(`/reports/user/${this.id}`);
+      console.log(response)
+      console.log('carregou')
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao obter historico:", error.response?.data || error.message);
       return null;
     }
   }

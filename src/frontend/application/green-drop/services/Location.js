@@ -12,12 +12,13 @@ class LocationService {
   }
 
   async getNearbyLocations(lat, lng, radius = 5000) {
-    if (__DEV__) return this.mock;
+    //if (__DEV__) return this.mock;
     try {
-      const response = await api.get(`/locations/nearby`, {
-        params: { latitude: lat, longitude: lng, radius },
-      });
-      return response.data.locations;
+      /* const response = await api.get(`/locations/nearby`, {
+        params: { latitude: lat, longitude: lng, radius }, //desabilitado
+      }); */
+      const response = await api.get(`/reports`)
+      return response.data;
     } catch (error) {
       console.error('Erro na API de localização:', error);
       throw new Error('Não foi possível buscar locais próximos');

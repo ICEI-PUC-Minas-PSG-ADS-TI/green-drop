@@ -36,6 +36,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#fefcf1"
       },
+      "permissions": ["android.permission.INTERNET"],
       "package": "com.anonymous.Green_Drop",
       "jsEngine": "jsc"
     },

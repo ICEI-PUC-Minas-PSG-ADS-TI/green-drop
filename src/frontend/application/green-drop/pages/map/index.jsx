@@ -128,6 +128,30 @@ const MapScreen = ({ initialMarkers = [] }) => {
     setSelectedMarker(marker);
   };
 
+  // Componente para controlar a visibilidade dos marcadores baseado no zoom
+const ZoomAwareMarkers = ({ region, markers, onPress }) => {
+  // Limite de zoom onde os marcadores ficam visíveis (latitudeDelta)
+  const MAX_VISIBLE_ZOOM = 0.1;
+  
+  // Verifica se o zoom atual permite mostrar marcadores
+  const shouldShowMarkers = region && region.latitudeDelta <= MAX_VISIBLE_ZOOM;
+
+  if (!shouldShowMarkers) return null;
+
+  return markers?.map((marker) => (
+    <Marker
+      key={marker.id || `marker-${marker.latitude}-${marker.longitude}`}
+      coordinate={{
+        latitude: parseFloat(marker.latitude),
+        longitude: parseFloat(marker.longitude),
+      }}
+      title={marker.name}
+      description={marker.category}
+      onPress={() => onPress(marker)}
+    />
+  ));
+};
+
   // Display loading indicator when getting location
   if (locationLoading && !location) {
     return (
@@ -177,18 +201,11 @@ const MapScreen = ({ initialMarkers = [] }) => {
           onRegionChangeComplete={onRegionChangeComplete}
         >
           {/* Markers for each location */}
-          {markers?.map((marker) => (
-            <Marker
-              key={marker.id || `marker-${marker.latitude}-${marker.longitude}`}
-              coordinate={{
-                latitude: parseFloat(marker.latitude),
-                longitude: parseFloat(marker.longitude),
-              }}
-              title={marker.name}
-              description={marker.category}
-              onPress={() => handleMarkerPress(marker)}
-            />
-          ))}
+          <ZoomAwareMarkers 
+            region={region}
+            markers={markers}
+            onPress={handleMarkerPress}
+          />
         </MapView>
       )}
 

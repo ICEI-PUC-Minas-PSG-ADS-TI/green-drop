@@ -18,6 +18,7 @@ export default function Conta() {
   const { loginStatus, user, logoutUsuario } = useUserContext();
 
   const usuario = user || []
+  const userPhoto = usuario.photoUrl || UserPlaceholder
 
   return (
     <SafeAreaProvider>
@@ -45,7 +46,7 @@ export default function Conta() {
         <View style={styles.userLogoBoxContainer}>
           <View style={styles.userLogoBox}>
             <Image
-              source={UserPlaceholder}
+              source={userPhoto}
               style={styles.userImage}
               resizeMode="contain"
             />
@@ -54,12 +55,12 @@ export default function Conta() {
         {loginStatus ? (
           <View style={styles.logBox}>
             <Text style={styles.userName} numberOfLines={2}>
-              {usuario.displayName}
+              {usuario.name}
             </Text>
             <View style={styles.userContactBox}>
               <Text style={styles.userContacHead}>Contato do usuário:</Text>
               <Text style={styles.userContacText}>
-                Telefone: {usuario.telefone}
+                Telefone: {usuario.phone}
               </Text>
               <Text style={styles.userContacText}>
                 E-mail: {usuario.email}
@@ -67,7 +68,7 @@ export default function Conta() {
             </View>
             {/* <View style={styles.userPointsBox}>
               <Text style={styles.userPointsHead}>Pontos do usuário:</Text>
-              <Text style={styles.userPointsText}>{usuario.pontos}</Text>
+              <Text style={styles.userPointsText}>{usuario.points}</Text>
             </View> */}
             <TouchableOpacity
               style={styles.authButton}

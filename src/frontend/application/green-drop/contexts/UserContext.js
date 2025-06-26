@@ -19,7 +19,7 @@ export function UserProvider({ children }) {
   useEffect(() => {
     (async () => {
       try {
-        if(!loginStatus == true) return
+        if (!loginStatus == true) return
         const profile = await usuarioService.getProfile();
         if (profile) {
           setUser(profile);
@@ -28,7 +28,7 @@ export function UserProvider({ children }) {
         } else {
           usuarioService.clearToken();
         }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (e) {
         usuarioService.clearToken();
       }
@@ -40,7 +40,7 @@ export function UserProvider({ children }) {
       gameService.getUserStats(),
       gameService.getConquistas(),
       gameService.getDesafios(),
-      gameService.getHistorico(),
+      usuarioService.getHistorico(),
     ]);
     setUserStats(stats);
     setConquistas(cqs);
@@ -48,29 +48,29 @@ export function UserProvider({ children }) {
     setHistorico(hist);
   };
 
- const loginUsuario = async (email, senha) => { 
-  setLoading(true);
-  try {
-    const data = await usuarioService.login({ email, senha });
-    if (!data) throw new Error('Login falhou');
-    
-    // Busca o perfil atualizado após login
-    const profile = await usuarioService.getProfile();
-    setUser(profile);
-    
-    setLoginStatus(true);
-    await loadGameData();
-    return true;
-  } catch (error) {
-    console.error("Erro ao fazer login:", error.message);
-    return false;
-  } finally {
-    setLoading(false);
-  }
-};
+  const loginUsuario = async (email, senha) => {
+    setLoading(true);
+    try {
+      const data = await usuarioService.login({ email, senha });
+      if (!data) throw new Error('Login falhou');
+
+      // Busca o perfil atualizado após login
+      const profile = await usuarioService.getProfile();
+      setUser(profile);
+
+      setLoginStatus(true);
+      await loadGameData();
+      return true;
+    } catch (error) {
+      console.error("Erro ao fazer login:", error.message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const logoutUsuario = () => {
-    usuarioService.clearToken();
+    usuarioService.logout();
     setUser(null);
     setLoginStatus(false);
   };

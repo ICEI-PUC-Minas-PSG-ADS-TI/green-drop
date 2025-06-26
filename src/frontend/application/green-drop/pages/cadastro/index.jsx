@@ -12,6 +12,7 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useUserContext } from '@/contexts/UserContext';
 import * as ImagePicker from 'expo-image-picker';
+import { Blob } from 'blob-polyfill';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/contexts/ThemeContext';
 import { colors } from "@/themes/index";
@@ -115,18 +116,12 @@ export default function CadastroScreen() {
     }
 
     const payload = {
-      nome: form.nome,
-      email: form.email,
-      senha: form.senha,
-      telefone: formatSendTelefone(form.telefone),
-      imagem: form.imagem
-        ? {
-            uri: form.imagem.uri,
-            name: form.imagem.fileName || form.imagem.uri.split('/').pop(),
-            type: form.imagem.type || `image/${form.imagem.uri.split('.').pop()}`
-          }
-        : null
-    };
+    nome: form.nome,
+    email: form.email,
+    senha: form.senha,
+    telefone: formatSendTelefone(form.telefone),
+    imagem: form.imagem || null
+  };
 
     const success = await cadastrarUsuario(payload);
     if (success) {

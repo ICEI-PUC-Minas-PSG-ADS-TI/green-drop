@@ -13,7 +13,7 @@ class GameService {
         { id: 1, titulo: "Explorador Iniciante", descricao: "Adicione 5 novos locais", progresso: "3/5", completo: false },
         { id: 2, titulo: "Contribuidor Ativo", descricao: "Faça 10 contribuições este mês", progresso: "7/10", completo: false },
       ],
-      historico: [
+      /* historico: [
         {
           id: 1,
           category: 'infra',                    // id da categoria
@@ -41,7 +41,7 @@ class GameService {
           description: 'Frequentes quedas de energia no bairro Nova Vista durante a noite.',
           photo: { uri: 'https://picsum.photos/id/297/200/200' }
         },
-      ],
+      ], */
     };
   }
 
